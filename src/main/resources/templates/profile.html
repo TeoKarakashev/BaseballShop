@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<main>
+
+    <th:block th:include="~{fragments/navigation}"></th:block>
+
+    <div class="container">
+        <div class="row tm-mt-big justify-content-center tex">
+            <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 text-white text-center">
+
+                <div class="row justify-content-center ">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">User Profile</h2>
+                    </div>
+                </div>
+                <div class="row mt-4 tm-edit-product-row">
+                    <div class="col-xl-7 col-lg-7 col-md-12">
+                        <form action="" class="tm-edit-product-form">
+                            <div class="input-group mb-3">
+                                <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
+                                    Name
+                                </label>
+                                <input disabled id="name" name="name" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" value="Teodor Karakashev">
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="team" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Team
+                                </label>
+                                <input disabled id="team" name="team" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="Sofia Blues">
+
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="email" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Email
+                                </label>
+                                <input disabled id="email" name="email" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="teodor.karakashev@gmail.com">
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="bat" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Bat
+                                </label>
+                                <input disabled id="bat" name="bat" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="E7">
+                            </div>
+                            <div class="input-group mb-3">
+                                <label for="glove" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Glove
+                                </label>
+                                <input disabled id="glove" name="glove" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="Rawlings">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                        <img src="/img/user-picture.jpg" alt="Profile Image" class="img-fluid mx-auto d-block">
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <div class="button-holder d-flex">
+                                    <input type="submit" class="btn btn-info btn-lg" value="Change picture"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:include="fragments/footer"></div>
+</html>

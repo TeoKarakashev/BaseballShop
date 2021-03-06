@@ -1,0 +1,28 @@
+body {
+    background-image: url("/img/background.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-bottom: 5rem;
+
+}
+
+.bg-blur {
+    background-color: rgba(221, 120, 59, 0.3);
+    border: 3px solid white;
+    width: 100%;
+    padding: 20px;
+}
+
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+}
+
+.align-center{
+    align-items: center;
+}
+
+
+

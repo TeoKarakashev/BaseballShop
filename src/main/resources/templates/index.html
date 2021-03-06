@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+
+<main>
+    <th:block th:include="~{fragments/navigation}"></th:block>
+    <div class="container bg-blur mt-5">
+        <p class="text-white h1 text-center">Welcome to the baseball recruitment application</p>
+        <hr class="my-3 bg-white w-50" />
+        <p class="h4 text-white text-center">The application will help you create your own baseball club and recruit
+            players in order to become the best.</p>
+        <hr class="my-3 bg-white w-75" />
+        <p class="h3 text-white text-center">
+            <a class="text-primary" href="/users/login">Login</a>
+            if you have an account or
+            <a class="text-primary" href="/users/register">Register</a>
+            now in order to find or create a team.
+        </p>
+    </div>
+</main>
+
+<div th:include="fragments/footer"></div>
+</body>
+</html>
