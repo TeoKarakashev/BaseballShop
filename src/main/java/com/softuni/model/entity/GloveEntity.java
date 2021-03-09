@@ -1,7 +1,6 @@
 package com.softuni.model.entity;
 
 import com.softuni.model.entity.enums.GloveMaterial;
-import com.softuni.model.entity.enums.GloveSize;
 
 import javax.persistence.*;
 
@@ -11,16 +10,34 @@ public class GloveEntity extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String brand;
-    @Enumerated(EnumType.STRING)
-    private GloveSize size;
+    @Column(name = "image_url", nullable = false, columnDefinition = "BLOB")
+    private String imageUrl;
     @Enumerated(EnumType.STRING)
     private GloveMaterial material;
     @Column(columnDefinition = "text")
     private String description;
+    @Column(nullable = false)
+    private Double size;
+    @ManyToOne
+    private BrandEntity brand;
 
     public GloveEntity() {
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public BrandEntity getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandEntity brand) {
+        this.brand = brand;
     }
 
     public String getName() {
@@ -31,20 +48,13 @@ public class GloveEntity extends BaseEntity {
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public GloveSize getSize() {
-        return size;
-    }
-
-    public void setSize(GloveSize size) {
-        this.size = size;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public GloveMaterial getMaterial() {

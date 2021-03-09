@@ -8,6 +8,7 @@ import com.softuni.repository.UserRepository;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final BaseballUserService baseballUserService;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BaseballUserService baseballUserService) {
         this.userRepository = userRepository;
         this.roleService = roleService;

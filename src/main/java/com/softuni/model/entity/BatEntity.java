@@ -12,13 +12,22 @@ public class BatEntity extends BaseEntity {
     private String name;
     @Enumerated(EnumType.STRING)
     private BatMaterial material;
-    @Column
+    @Column(nullable = false)
     private int weight;
-    @Column
+    @Column(nullable = false)
     private int size;
-
+    @ManyToOne
+    private BrandEntity brand;
 
     public BatEntity() {
+    }
+
+    public BrandEntity getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandEntity brand) {
+        this.brand = brand;
     }
 
     public String getName() {

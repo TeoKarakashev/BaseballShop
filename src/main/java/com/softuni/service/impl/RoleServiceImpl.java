@@ -4,6 +4,7 @@ import com.softuni.model.entity.RoleEntity;
 import com.softuni.model.entity.enums.UserRole;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
+    @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
