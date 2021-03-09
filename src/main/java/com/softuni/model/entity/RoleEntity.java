@@ -1,29 +1,26 @@
 package com.softuni.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import com.softuni.model.entity.enums.UserRole;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class RoleEntity extends BaseEntity{
 
-    @Column(nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 
     public RoleEntity() {
     }
 
-    public String getName() {
-        return name;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
-
-
 }

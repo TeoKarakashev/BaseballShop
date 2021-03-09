@@ -20,7 +20,7 @@ public class UserEntity extends BaseEntity{
     private int age;
     @Column(columnDefinition = "text")
     private String description;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
     @ManyToOne
     private BatEntity bat;

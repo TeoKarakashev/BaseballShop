@@ -1,9 +1,11 @@
 package com.softuni.service;
 
 import com.softuni.model.entity.RoleEntity;
+import com.softuni.model.entity.enums.UserRole;
 
 public interface RoleService {
     void initRoles();
 
-    RoleEntity findByName(String name);
+
+    RoleEntity getRoleByName(UserRole admin);
 }

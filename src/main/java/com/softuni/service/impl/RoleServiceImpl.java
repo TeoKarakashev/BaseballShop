@@ -1,9 +1,12 @@
 package com.softuni.service.impl;
 
 import com.softuni.model.entity.RoleEntity;
+import com.softuni.model.entity.enums.UserRole;
 import com.softuni.repository.RoleRepository;
 import com.softuni.service.RoleService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -17,18 +20,18 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void initRoles() {
         if(this.roleRepository.count() == 0){
-            RoleEntity user = new RoleEntity();
-            user.setName("user");
-            this.roleRepository.save(user);
             RoleEntity admin = new RoleEntity();
-            admin.setName("admin");
-            this.roleRepository.save(admin);
+            admin.setRole(UserRole.ADMIN);
+            RoleEntity user = new RoleEntity();
+            user.setRole(UserRole.USER);
+
+            this.roleRepository.saveAll(List.of(admin, user));
         }
     }
 
     @Override
-    public RoleEntity findByName(String name) {
-        return this.roleRepository.findByName(name).get();
-
+    public RoleEntity getRoleByName(UserRole userRole) {
+        return this.roleRepository.findByRole(userRole).orElseThrow();
     }
+
 }
