@@ -14,9 +14,9 @@ public class TeamController {
         return "team-create";
     }
 
-    @GetMapping("/join")
+    @GetMapping("")
     public String joinTeam(){
 
-        return "join-team";
+        return "teams-all";
     }
 }

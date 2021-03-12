@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<th:block th:include="~{fragments/navigation}"></th:block>
+<main>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Gloves</span></h1>
+                <hr class="hr-3"/>
+                <div >
+                    <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No Gloves are available at the moment!</span></h2>
+                </div>
+                <div  class="container-fluid">
+                    <div class="row mx-auto d-flex flex-row justify-content-center">
+                        <div > class="card col-sm-6 col-md-6  col-lg-4 m-1 p-0">
+
+                            <div class="card-img-top-wrapper">
+                                <a >
+                                    <img class="card-img-top"  alt="car-image"></a>
+                            </div>
+                            <div class="card-body pb-1">
+                                <h5 class="card-title text-center" ></h5>
+                            </div>
+                            <ul class=" list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="card-text text-center"><span ></span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h4 class="text-center mt-2"><a href="/vehicles/viewAll" class="badge badge-pill badge-dark">See all Gloves</a></h4>
+
+                </div>
+            </div>
+
+            <div class="col">
+                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Bats</span></h1>
+                <hr class="hr-3"/>
+                <div >
+                    <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No Bats are available at the moment!</span></h2>
+                </div>
+                <div  class="container-fluid">
+                    <div class="row mx-auto d-flex flex-row justify-content-center">
+                        <div  class="card col-sm-6 col-md-6  col-lg-4 m-1 p-0">
+                            <div class="card-img-top-wrapper">
+                                <img class="card-img-top"  alt="part-image"></a>
+                            </div>
+                            <div class="card-body pb-1">
+                                <h5 class="card-title text-center" ></h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="card-text text-center"><span ></span></div>
+                                </li>
+                            </ul>
+
+                            <a th:text="Buy"  class="btn btn-dark"></a>
+                        </div>
+                    </div>
+                    <h4 class="text-center mt-2"><a href="/parts/viewAll" class="badge badge-pill badge-dark">See all parts</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<div th:include="fragments/footer"></div>
+</html>

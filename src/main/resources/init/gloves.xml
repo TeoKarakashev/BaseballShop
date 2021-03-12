@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gloves>
+    <glove>
+        <age>17</age>
+        <birthday>1919-10-16</birthday>
+        <first-name>Ta</first-name>
+        <last-name>Abadam</last-name>
+        <middle-name>D</middle-name>
+        <role>Side Character</role>
+        <book>
+            <id>41</id>
+        </book>
+    </glove>
+</gloves>
