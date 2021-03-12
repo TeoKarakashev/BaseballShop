@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gloves>
     <glove>
-        <age>17</age>
-        <birthday>1919-10-16</birthday>
-        <first-name>Ta</first-name>
-        <last-name>Abadam</last-name>
-        <middle-name>D</middle-name>
-        <role>Side Character</role>
-        <book>
-            <id>41</id>
-        </book>
+        <name>A2000</name>
+        <image-url>https://cdn11.bigcommerce.com/s-9emg7q0vw3/images/stencil/1280x1280/products/13950/61759/wilson-a2000-2019-july-glove-of-the-month-1786-11-5-infield-baseball-glove-1__41795.1569706523.jpg?c=2</image-url>
+        <material>LEATHER</material>
+        <size>11.75</size>
+        <description>This isn’t just any ball glove. It’s the best ball glove in the world. The 2021 A2000 glove lineup
+            is designed for the game’s elite players, using the most premium ball glove materials in the world
+        </description>
+        <brand-name>Wilson</brand-name>
+    </glove>
+    <glove>
+        <name>Hearth of the hide</name>
+        <image-url>
+            https://cdn.baseballexpress.com/media/catalog/product/cache/1ff9e0c768a0b8b3a19109048ff96b8f/p/r/pro20420cb_1.png
+        </image-url>
+        <material>LEATHER</material>
+        <size>11.50</size>
+        <description>In addition, it features the same superior comfort and feel you expect from any HOH glove thanks to
+            its deer-tanned palm lining, thermoformed wrist lining, and padded thumb sleeve. This infield glove's
+            200-pattern is our most popular infield pattern, due to its large pocket and extreme versatility. All of
+            this comes together beautifully, in an eye-catching three-tone camel, navy, and Columbia blue design to make
+            you standout every play. As a result, you'll get an eye-catching glove that is only outdone by the amazing
+            plays you'll make with it.
+        </description>
+        <brand-name>Rawlings</brand-name>
+    </glove>
+    <glove>
+        <name>A500</name>
+        <image-url>
+            https://cdn11.bigcommerce.com/s-34e8e/images/stencil/1280x1280/products/1366/1944/wilson-a500-18125-youth-baseball-glove-12-50-wta05rb18125-42__61543.1543347417.jpg?c=2
+        </image-url>
+        <material>SYNTHETIC</material>
+        <size>11.50</size>
+        <description>The smallest offering in our redesigned A500 lineup, this 10.5" model features an incredibly
+            durable X2 Web. A completely reconfigured hand opening is smaller than ever, giving youth players a snugger
+            fit - allowing for more comfort and control in the field.
+        </description>
+        <brand-name>Wilson</brand-name>
     </glove>
 </gloves>

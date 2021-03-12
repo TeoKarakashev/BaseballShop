@@ -3,12 +3,11 @@ package com.softuni.service.impl;
 import com.google.gson.Gson;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.service.BrandInitServiceModel;
+import com.softuni.model.service.BrandServiceModel;
 import com.softuni.repository.BrandRepository;
 import com.softuni.service.BrandService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -47,5 +46,10 @@ public class BrandServiceImpl implements BrandService {
         String join = String.join("", Files.readAllLines(Path.of(BRANDS_PATH)));
 
         return String.join("", Files.readAllLines(Path.of(BRANDS_PATH)));
+    }
+
+    @Override
+    public BrandServiceModel findByName(String brand) {
+       return this.modelMapper.map(this.brandRepository.findByName(brand).get(), BrandServiceModel.class);
     }
 }
