@@ -3,6 +3,8 @@ package com.softuni.model.view;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.enums.GloveMaterial;
 
+import java.math.BigDecimal;
+
 public class GloveViewModel {
 
     private String id;
@@ -12,8 +14,17 @@ public class GloveViewModel {
     private String description;
     private Double size;
     private BrandEntity brand;
+    private BigDecimal price;
 
     public GloveViewModel() {
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getId() {

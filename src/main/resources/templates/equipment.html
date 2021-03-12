@@ -9,39 +9,40 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Gloves</span></h1>
+                <h1 class="text-center mt-2"><span class="text-white">Gloves</span></h1>
                 <hr class="hr-3"/>
-                <div >
-                    <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No Gloves are available at the moment!</span></h2>
+                <div th:if="${gloves.size()==0}">
+                    <h2 class="text-center mt-2"><span class="text-white">No vehicles are available at the moment!</span></h2>
                 </div>
-                <div  class="container-fluid">
+                <div th:unless="${gloves.size()==0}" class="container-fluid">
                     <div class="row mx-auto d-flex flex-row justify-content-center">
-                        <div > class="card col-sm-6 col-md-6  col-lg-4 m-1 p-0">
+                        <div th:each="g : ${gloves}" th:object="${g}" class="card col-sm-6 col-md-6  col-lg-4 m-1 p-0">
 
                             <div class="card-img-top-wrapper">
-                                <a >
-                                    <img class="card-img-top"  alt="car-image"></a>
+                                <a th:href="@{gloves/details/(id = *{id})}">
+                                    <img class="card-img-top" th:src="*{imageUrl}" alt="car-image"></a>
                             </div>
                             <div class="card-body pb-1">
-                                <h5 class="card-title text-center" ></h5>
+                                <h5 class="card-title text-center" th:text="|Name *{name}|"></h5>
                             </div>
                             <ul class=" list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <div class="card-text text-center"><span ></span></div>
+                                    <div class="card-text text-center"><span th:text="|Size: *{size}    Price: *{price}|"></span></div>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <h4 class="text-center mt-2"><a href="/vehicles/viewAll" class="badge badge-pill badge-dark">See all Gloves</a></h4>
+                    <!--   <a text="See all vehicles" href="/" class="btn btn-dark"></a> -->
+                    <h4 class="text-center mt-2"><a href="/gloves/viewAll" class="badge badge-pill badge-dark">See all Gloves</a></h4>
 
                 </div>
             </div>
 
             <div class="col">
-                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Bats</span></h1>
+                <h1 class="text-center mt-2"><span class="text-white">Bats</span></h1>
                 <hr class="hr-3"/>
                 <div >
-                    <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No Bats are available at the moment!</span></h2>
+                    <h2 class="text-center mt-2"><span class="text-white">No Bats are available at the moment!</span></h2>
                 </div>
                 <div  class="container-fluid">
                     <div class="row mx-auto d-flex flex-row justify-content-center">

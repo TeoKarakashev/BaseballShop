@@ -3,6 +3,7 @@ package com.softuni.model.entity;
 import com.softuni.model.entity.enums.GloveMaterial;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "gloves")
@@ -18,6 +19,8 @@ public class GloveEntity extends BaseEntity {
     private String description;
     @Column(nullable = false)
     private Double size;
+    @Column(nullable = false)
+    private BigDecimal price;
     @ManyToOne
     private BrandEntity brand;
 
@@ -71,5 +74,13 @@ public class GloveEntity extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

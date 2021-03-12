@@ -3,6 +3,8 @@ package com.softuni.model.view;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.enums.BatMaterial;
 
+import java.math.BigDecimal;
+
 public class BatViewModel {
 
     private String id;
@@ -11,9 +13,17 @@ public class BatViewModel {
     private int weight;
     private int size;
     private BrandEntity brand;
-
+    private BigDecimal price;
 
     public BatViewModel() {
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getId() {

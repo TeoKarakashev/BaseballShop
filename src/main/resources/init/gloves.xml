@@ -5,6 +5,7 @@
         <image-url>https://cdn11.bigcommerce.com/s-9emg7q0vw3/images/stencil/1280x1280/products/13950/61759/wilson-a2000-2019-july-glove-of-the-month-1786-11-5-infield-baseball-glove-1__41795.1569706523.jpg?c=2</image-url>
         <material>LEATHER</material>
         <size>11.75</size>
+        <price>300.00</price>
         <description>This isn’t just any ball glove. It’s the best ball glove in the world. The 2021 A2000 glove lineup
             is designed for the game’s elite players, using the most premium ball glove materials in the world
         </description>
@@ -17,6 +18,7 @@
         </image-url>
         <material>LEATHER</material>
         <size>11.50</size>
+        <price>299.99</price>
         <description>In addition, it features the same superior comfort and feel you expect from any HOH glove thanks to
             its deer-tanned palm lining, thermoformed wrist lining, and padded thumb sleeve. This infield glove's
             200-pattern is our most popular infield pattern, due to its large pocket and extreme versatility. All of
@@ -33,6 +35,7 @@
         </image-url>
         <material>SYNTHETIC</material>
         <size>11.50</size>
+        <price>69.00</price>
         <description>The smallest offering in our redesigned A500 lineup, this 10.5" model features an incredibly
             durable X2 Web. A completely reconfigured hand opening is smaller than ever, giving youth players a snugger
             fit - allowing for more comfort and control in the field.
