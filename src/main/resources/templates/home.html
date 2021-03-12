@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+
+<main>
+    <th:block th:include="~{fragments/navigation}"></th:block>
+    <div class="text-white text-center p-1">This is the home page</div>
+</main>
+
+<div th:include="fragments/footer"></div>
+</body>
+</html>

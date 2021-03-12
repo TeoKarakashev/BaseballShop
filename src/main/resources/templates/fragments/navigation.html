@@ -8,9 +8,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+
                 <ul class="navbar-nav">
                     <li sec:authorize="isAuthenticated()" class="nav-item">
-                        <a class="nav-link  " href="/users/profile">Profile</a>
+                        <a class="nav-link  " href="/users/profile" th:text="|Welcome, ${session.username}|">Profile</a>
                     </li>
 
                     <li sec:authorize="isAuthenticated()" class="nav-item">
@@ -20,27 +21,31 @@
                         <a class="nav-link " href="/equpment/buy">Buy equipment</a>
                     </li>
 
-                    <li sec:authorize="!isAuthenticated()" class="nav-item text-right">
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
                         <a class="nav-link " href="/users/login">Login</a>
                     </li>
 
-                    <li sec:authorize="!isAuthenticated()" class="nav-item text-right">
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
                         <a class="nav-link " href="/users/register">Register</a>
                     </li>
+
+                    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/teams/create">Create a team</a>
+                                <a class="dropdown-item" href="/admin/panel">Admin Panel</a>
+                                <a class="dropdown-item" href="#">Add Bat</a>
+                                <a class="dropdown-item" href="#">Add Glove</a>
+                            </div>
+                        </li>
+                    </div>
                     <li sec:authorize="isAuthenticated()" class="nav-item ">
                         <form th:action="@{users/logout}" method="POST">
                             <button class="nav-link text-white active h5" type="submit">Logout</button>
                         </form>
                     </li>
-                    <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin Panel
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/teams/create">Create a team</a>
-                        <a class="dropdown-item" href="/admin/panel">Admin Panel</a>
-                        <a class="dropdown-item" href="#">Add Bat</a>
-                        <a class="dropdown-item" href="#">Add Glove</a>
-                    </div>
 
 
                 </ul>
