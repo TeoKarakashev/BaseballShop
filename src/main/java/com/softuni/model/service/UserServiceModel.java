@@ -1,46 +1,27 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.*;
+import com.softuni.model.entity.BatEntity;
+import com.softuni.model.entity.GloveEntity;
+import com.softuni.model.entity.RoleEntity;
+import com.softuni.model.entity.TeamEntity;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
-public class UserEntity extends BaseEntity{
-    @Column(nullable = false)
+public class UserServiceModel {
+
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
     private int age;
-    @Column(name = "image_url")
-    private String imageUrl;
-    @Column(columnDefinition = "text")
     private String description;
-    @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
-    @ManyToOne
     private BatEntity bat;
-    @ManyToOne
     private GloveEntity glove;
-    @ManyToOne
     private TeamEntity team;
 
-    public UserEntity() {
-    }
-
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public UserServiceModel() {
     }
 
     public String getFirstName() {
@@ -129,9 +110,5 @@ public class UserEntity extends BaseEntity{
 
     public void setTeam(TeamEntity team) {
         this.team = team;
-    }
-
-    public void addRole(RoleEntity roleEntity){
-        this.roles.add(roleEntity);
     }
 }

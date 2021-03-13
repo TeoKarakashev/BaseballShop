@@ -1,9 +1,7 @@
 package com.softuni.service;
 
-import com.softuni.model.entity.UserEntity;
 import com.softuni.model.service.UserRegisterServiceModel;
-
-import java.util.Optional;
+import com.softuni.model.service.UserServiceModel;
 
 public interface UserService {
     void registerAndLoginUser(UserRegisterServiceModel userRegisterServiceModel);
@@ -11,4 +9,7 @@ public interface UserService {
     boolean userExists(String username);
 
     void initAdminUser();
+
+
+    UserServiceModel findByUsername(String name);
 }

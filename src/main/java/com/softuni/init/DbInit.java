@@ -26,10 +26,10 @@ public class DbInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         this.roleService.initRoles();
-        this.userService.initAdminUser();
         this.brandService.initBrands();
         this.batService.initBats();
         this.gloveService.initGloves();
+        this.userService.initAdminUser();
 
     }
 }

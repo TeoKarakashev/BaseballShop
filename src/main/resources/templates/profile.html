@@ -13,25 +13,30 @@
 
                 <div class="row justify-content-center ">
                     <div class="col-12">
-                        <h2 class="tm-block-title d-inline-block">User Profile</h2>
+                        <h2 class="tm-block-title d-inline-block">Profile</h2>
                     </div>
                 </div>
                 <div class="row mt-4 tm-edit-product-row">
                     <div class="col-xl-7 col-lg-7 col-md-12">
-                        <form action="" class="tm-edit-product-form">
+                        <form th:object="${user}" class="tm-edit-product-form">
                             <div class="input-group mb-3">
                                 <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">
                                     Name
                                 </label>
                                 <input disabled id="name" name="name" type="text"
-                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" value="Teodor Karakashev">
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" th:value="|*{firstName} *{lastName}|">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="team" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Team
                                 </label>
-                                <input disabled id="team" name="team" type="text"
+                                <input th:if="*{team != null}" disabled id="team" name="team" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                       data-large-mode="true" value="Sofia Blues">
+                                       data-large-mode="true" th:value="*{team.name}">
+                                <input th:if="*{team == null}" disabled id="noTeam" name="team" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="No team">
+
+
 
                             </div>
                             <div class="input-group mb-3">
@@ -39,21 +44,27 @@
                                 </label>
                                 <input disabled id="email" name="email" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                       data-large-mode="true" value="teodor.karakashev@gmail.com">
+                                       data-large-mode="true" th:value="*{email}">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="bat" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Bat
                                 </label>
-                                <input disabled id="bat" name="bat" type="text"
+                                <input th:if="*{bat != null}" disabled id="bat" name="bat" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                       data-large-mode="true" value="E7">
+                                       data-large-mode="true" th:value="|*{bat.getBrand().name}: *{bat.name}|">
+                                <input th:if="*{bat == null}" disabled id="noBat" name="bat" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="No bat">
                             </div>
                             <div class="input-group mb-3">
                                 <label for="glove" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Glove
                                 </label>
-                                <input disabled id="glove" name="glove" type="text"
+                                <input th:if="*{glove !=null}" disabled id="glove" name="glove" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                       data-large-mode="true" value="Rawlings">
+                                       data-large-mode="true" th:value="|*{glove.getBrand().name}: *{glove.name}|">
+                                <input th:if="*{glove == null}" id="NoGlove" name="glove" type="text"
+                                       class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                       data-large-mode="true" value="No Glove">
                             </div>
                         </form>
                     </div>

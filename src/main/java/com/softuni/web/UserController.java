@@ -1,13 +1,12 @@
 package com.softuni.web;
 
 import com.softuni.model.binding.UserRegisterBindingModel;
-import com.softuni.model.entity.UserEntity;
 import com.softuni.model.service.UserRegisterServiceModel;
+import com.softuni.model.view.UserViewModel;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -85,6 +85,15 @@ public class UserController {
     }
 
 
+    @GetMapping("/profile")
+    public ModelAndView profile(ModelAndView modelAndView, Principal principal){
+
+        UserViewModel user = this.modelMapper.map(this.userService.findByUsername(principal.getName()), UserViewModel.class);
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("profile");
+
+        return modelAndView;
+    }
 
 
     @GetMapping("/login")
@@ -92,10 +101,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/profile")
-    public String profile(){
-        return "profile";
-    }
+
 
 
     @PostMapping("/login-error")

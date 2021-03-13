@@ -1,5 +1,6 @@
 package com.softuni.service;
 
+import com.softuni.model.entity.GloveEntity;
 import com.softuni.model.view.GloveViewModel;
 
 import javax.xml.bind.JAXBException;
@@ -13,4 +14,6 @@ public interface GloveService {
     void initGloves() throws JAXBException;
 
     GloveViewModel findById(String id);
+
+    GloveEntity getOne();
 }
