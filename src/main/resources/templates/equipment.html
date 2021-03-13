@@ -19,7 +19,7 @@
                         <div th:each="g : ${gloves}" th:object="${g}" class="card col-sm-6 col-md-6  col-lg-4 m-1 p-0">
 
                             <div class="card-img-top-wrapper">
-                                <a th:href="@{gloves/details/(id = *{id})}">
+                                <a th:href="@{gloves/details/{id}(id = *{id})}">
                                     <img class="card-img-top" th:src="*{imageUrl}" alt="car-image"></a>
                             </div>
                             <div class="card-body pb-1">

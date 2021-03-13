@@ -11,4 +11,6 @@ public interface GloveService {
     List<GloveViewModel> findAllGloves();
 
     void initGloves() throws JAXBException;
+
+    GloveViewModel findById(String id);
 }

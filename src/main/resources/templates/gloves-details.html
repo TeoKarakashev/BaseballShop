@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+<main>
+    <th:block th:include="~{fragments/navigation}"></th:block>
+    <div th:object="${glove}" class="container bg-blur rounded mt-5 text-white">
+        <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+            <img th:src="*{imageUrl}" width="100%">
+        </div>
+        <h3 th:text="|Name: *{name}|"></h3><h3 th:text="|Price: *{price}|"></h3>
+
+        <h3 th:text="|Size: *{size}|"></h3>
+        <h3 th:text="|Description: *{description}|"></h3>
+        <th:block >
+            <a href="/gloves/buy">Buy</a>
+        </th:block>
+
+    </div>
+</main>
+<footer class="footer bg-transparent  py-2">
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

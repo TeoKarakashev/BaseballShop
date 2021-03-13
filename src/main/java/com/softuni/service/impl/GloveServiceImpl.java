@@ -55,4 +55,9 @@ public class GloveServiceImpl implements GloveService {
 
         }
     }
+
+    @Override
+    public GloveViewModel findById(String id) {
+        return this.modelMapper.map(this.gloveRepository.findById(id).get(), GloveViewModel.class);
+    }
 }
