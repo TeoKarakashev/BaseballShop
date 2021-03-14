@@ -1,6 +1,7 @@
 package com.softuni.service.impl;
 
 import com.google.gson.Gson;
+import com.softuni.error.BrandNotFoundException;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.service.BrandInitServiceModel;
 import com.softuni.model.service.BrandServiceModel;
@@ -50,6 +51,6 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public BrandServiceModel findByName(String brand) {
-       return this.modelMapper.map(this.brandRepository.findByName(brand).get(), BrandServiceModel.class);
+       return this.modelMapper.map(this.brandRepository.findByName(brand).orElseThrow(() -> new BrandNotFoundException("Brand Not Found")), BrandServiceModel.class);
     }
 }

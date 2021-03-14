@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.RoleNotFoundException;
 import com.softuni.model.entity.RoleEntity;
 import com.softuni.model.entity.enums.UserRole;
 import com.softuni.repository.RoleRepository;
@@ -33,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleEntity getRoleByName(UserRole userRole) {
-        return this.roleRepository.findByRole(userRole).orElseThrow();
+        return this.roleRepository.findByRole(userRole).orElseThrow(() -> new RoleNotFoundException("Role Not Found"));
     }
 
 }

@@ -24,7 +24,6 @@ public class BaseballUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println();
         UserEntity userEntity = this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username with " + username + "was not found"));
         return mapToUserDetails(userEntity);

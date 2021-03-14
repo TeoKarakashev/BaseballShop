@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.GloveNotFoundException;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.GloveEntity;
 import com.softuni.model.service.ImportGloveRootService;
@@ -58,7 +59,8 @@ public class GloveServiceImpl implements GloveService {
 
     @Override
     public GloveViewModel findById(String id) {
-        return this.modelMapper.map(this.gloveRepository.findById(id).get(), GloveViewModel.class);
+
+        return this.modelMapper.map(this.gloveRepository.findById(id).orElseThrow(() -> new GloveNotFoundException("Glove not found!")), GloveViewModel.class);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.RoleEntity;
 import com.softuni.model.entity.UserEntity;
 import com.softuni.model.entity.enums.UserRole;
@@ -91,7 +92,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel findByUsername(String name) {
-        return this.modelMapper.map(this.userRepository.findByUsername(name).get(), UserServiceModel.class);
+        return this.modelMapper.map(this.userRepository.findByUsername(name).
+                orElseThrow(() -> new UserNotFoundException("User not found")), UserServiceModel.class);
 
     }
 
