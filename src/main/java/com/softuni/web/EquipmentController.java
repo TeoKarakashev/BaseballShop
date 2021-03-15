@@ -22,7 +22,7 @@ public class EquipmentController {
     @GetMapping("")
     public ModelAndView all(ModelAndView modelAndView){
 
-        //TODO error handling, cloudinary
+        //TODO cloudinary
         //TODO add bats from xml, Think of something on the home page, details page for bats and gloves, see all btn
 
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
