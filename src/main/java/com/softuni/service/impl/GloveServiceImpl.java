@@ -67,4 +67,13 @@ public class GloveServiceImpl implements GloveService {
     public GloveEntity getOne() {
         return this.gloveRepository.getALlGloves().get(0);
     }
+
+    @Override
+    public List<GloveViewModel> findByBrand(BrandEntity brand) {
+
+        List<GloveViewModel> gloves = this.gloveRepository.findByBrand(brand).stream()
+                .map(gloveEntity -> this.modelMapper.map(gloveEntity, GloveViewModel.class))
+                .collect(Collectors.toList());
+        return gloves;
+    }
 }

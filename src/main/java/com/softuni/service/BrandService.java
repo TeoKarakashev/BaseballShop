@@ -10,4 +10,6 @@ public interface BrandService {
      String readAuthorsFileContent() throws IOException;
 
     BrandServiceModel findByName(String brand);
+
+
 }
