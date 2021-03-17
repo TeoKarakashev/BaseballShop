@@ -3,6 +3,7 @@ package com.softuni.model.entity;
 import com.softuni.model.entity.enums.BatMaterial;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "bats")
@@ -16,10 +17,40 @@ public class BatEntity extends BaseEntity {
     private int weight;
     @Column(nullable = false)
     private int size;
+    @Column(nullable = false, name = "image_url")
+    private String imageUrl;
+    @Column
+    private BigDecimal price;
+    @Column(columnDefinition = "text")
+    private String description;
     @ManyToOne
     private BrandEntity brand;
 
     public BatEntity() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public BrandEntity getBrand() {
