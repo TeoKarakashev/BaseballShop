@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+
+<main>
+    <th:block th:include="~{fragments/navigation}"></th:block>
+    <div class="row tm-mt-big justify-content-center">
+        <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
+            <div class="bg-white tm-block">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add new role to user</h2>
+                    </div>
+                </div>
+                <div class="row mt-4 tm-edit-product-row">
+                    <div class="col-xl-7 col-lg-7 col-md-12">
+                        <form action="/roles/add" method="POST"
+                              class="tm-edit-product-form" >
+                            <div class="input-group mb-3">
+                                <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Users</label>
+                                <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7" id="username" name="username">
+                                    <option value="" selected>Select user</option>
+<!--                                    th:each="n : ${names}" th:text="${n}" th:value="${n}"-->
+                                    <option >Pesho</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Roles</label>
+                                <div>
+                                    <input checked type="radio" id="user" name="role" value="user">
+                                    <label for="user">User</label><br/>
+                                    <input type="radio" id="admin" name="role" value="admin">
+                                    <label for="admin">Admin</label><br/>
+                                </div>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                    <button type="submit" class="btn btn-primary">Add
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                        <img src="/images/admin.jpg" alt="Exercise picture" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:include="fragments/footer"></div>
+</body>
+</html>

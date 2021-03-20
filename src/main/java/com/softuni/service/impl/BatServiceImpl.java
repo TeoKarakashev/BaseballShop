@@ -1,5 +1,6 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.BatNotFoundException;
 import com.softuni.error.BrandNotFoundException;
 import com.softuni.model.entity.BatEntity;
 import com.softuni.model.entity.enums.BatMaterial;
@@ -69,5 +70,10 @@ public class BatServiceImpl implements BatService {
             bat3.setDescription("The 110 model gives you the most balanced swing weight of all the standard models. It is the perfect fit for contact hitters looking for more bat speed.");
             this.batRepository.save(bat3);
         }
+    }
+
+    @Override
+    public BatViewModel findById(String id) {
+        return this.modelMapper.map(this.batRepository.findById(id).orElseThrow(() -> new BatNotFoundException("No bat found")), BatViewModel.class);
     }
 }

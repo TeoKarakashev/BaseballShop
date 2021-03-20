@@ -9,4 +9,6 @@ public interface BatService {
     List<BatViewModel> findAllBats();
 
     void initBats();
+
+    BatViewModel findById(String id);
 }
