@@ -7,5 +7,5 @@ public interface RoleService {
     void initRoles();
 
 
-    RoleEntity getRoleByName(UserRole admin);
+    RoleEntity getRoleByName(UserRole role);
 }

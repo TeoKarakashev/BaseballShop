@@ -134,4 +134,5 @@ public class UserEntity extends BaseEntity{
     public void addRole(RoleEntity roleEntity){
         this.roles.add(roleEntity);
     }
+
 }

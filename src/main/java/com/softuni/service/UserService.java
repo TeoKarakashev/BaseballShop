@@ -3,6 +3,8 @@ package com.softuni.service;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.service.UserServiceModel;
 
+import java.util.List;
+
 public interface UserService {
     void registerAndLoginUser(UserRegisterServiceModel userRegisterServiceModel);
 
@@ -12,4 +14,8 @@ public interface UserService {
 
 
     UserServiceModel findByUsername(String name);
+
+    List<String> findAllUsers();
+
+    void promoteUserToAdmin(String username);
 }

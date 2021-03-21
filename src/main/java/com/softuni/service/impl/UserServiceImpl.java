@@ -19,7 +19,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,7 +46,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerAndLoginUser(UserRegisterServiceModel userRegisterServiceModel) {
         UserEntity newUser = this.modelMapper.map(userRegisterServiceModel, UserEntity.class);
-        System.out.println();
         RoleEntity userRoleEntity = this.roleService.getRoleByName(UserRole.USER);
         newUser.setRoles(Set.of(userRoleEntity));
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
@@ -69,9 +70,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void initAdminUser() {
-        if(this.userRepository.count() == 0){
+        if (this.userRepository.count() == 0) {
             RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);
-            RoleEntity useRole   = this.roleService.getRoleByName(UserRole.USER);
+            RoleEntity useRole = this.roleService.getRoleByName(UserRole.USER);
 
 
             UserEntity admin = new UserEntity();
@@ -89,12 +90,30 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
     public UserServiceModel findByUsername(String name) {
         return this.modelMapper.map(this.userRepository.findByUsername(name).
                 orElseThrow(() -> new UserNotFoundException("User not found")), UserServiceModel.class);
 
+    }
+
+    @Override
+    public List<String> findAllUsers() {
+        RoleEntity admin = this.roleService.getRoleByName(UserRole.ADMIN);
+        List<UserServiceModel> users = userRepository.findAll().stream()
+                .map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class)).collect(Collectors.toList());
+        users.removeIf(user -> user.getRoles().size() == 2);
+
+        return users.stream().map(UserServiceModel::getUsername).collect(Collectors.toList());
+    }
+
+    @Override
+    public void promoteUserToAdmin(String username) {
+        RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);
+        RoleEntity useRole = this.roleService.getRoleByName(UserRole.USER);
+        UserEntity user = this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("No user found"));
+        user.setRoles(Set.of(adminRole, useRole));
+        this.userRepository.save(user);
     }
 
 
