@@ -3,6 +3,7 @@ package com.softuni.service.impl;
 import com.softuni.error.BatNotFoundException;
 import com.softuni.error.BrandNotFoundException;
 import com.softuni.model.entity.BatEntity;
+import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.enums.BatMaterial;
 import com.softuni.model.view.BatViewModel;
 import com.softuni.repository.BatRepository;
@@ -45,6 +46,7 @@ public class BatServiceImpl implements BatService {
             bat1.setMaterial(BatMaterial.WOOD);
             bat1.setSize(33);
             bat1.setWeight(30);
+            bat1.setQuantity(40);
             bat1.setBrand(this.brandRepository.findByName("E7").orElseThrow(() -> new BrandNotFoundException("No such brand")));
             bat1.setImageUrl("https://static.wixstatic.com/media/4343c6_88627082ac6a4aad9677b52e650a7679~mv2_d_5200_3200_s_4_2.jpg/v1/fill/w_978,h_598,al_c,q_85,usm_0.66_1.00_0.01/4343c6_88627082ac6a4aad9677b52e650a7679~mv2_d_5200_3200_s_4_2.webp");
             bat1.setDescription("The 271 feels very similar to the 110, but it has a quicker taper between the barrel and handle. This model can comfortably be used by contact or power hitters and has a slightly end loaded swing weight.");
@@ -55,6 +57,7 @@ public class BatServiceImpl implements BatService {
             bat2.setMaterial(BatMaterial.WOOD);
             bat2.setSize(34);
             bat2.setWeight(31);
+            bat2.setQuantity(40);
             bat2.setBrand(this.brandRepository.findByName("E7").orElseThrow(() -> new BrandNotFoundException("No such brand")));
             bat2.setImageUrl("https://static.wixstatic.com/media/4343c6_c0f7567f9dee47db9af0cc3fc7860492~mv2_d_5200_3200_s_4_2.jpg/v1/fill/w_977,h_598,al_c,q_85,usm_0.66_1.00_0.01/4343c6_c0f7567f9dee47db9af0cc3fc7860492~mv2_d_5200_3200_s_4_2.webp");
             bat2.setDescription("The 243 model features the largest barrel diameter. It's a great model for a power hitter who's looking for that end loaded swing feel.");
@@ -65,6 +68,7 @@ public class BatServiceImpl implements BatService {
             bat3.setMaterial(BatMaterial.WOOD);
             bat3.setSize(32);
             bat3.setWeight(29);
+            bat3.setQuantity(40);
             bat3.setBrand(this.brandRepository.findByName("E7").orElseThrow(() -> new BrandNotFoundException("No such brand")));
             bat3.setImageUrl("https://static.wixstatic.com/media/4343c6_f7b08d8a9b98436b9ac5ec544c020d6d~mv2_d_5200_3200_s_4_2.jpg/v1/fill/w_979,h_599,al_c,q_85,usm_0.66_1.00_0.01/4343c6_f7b08d8a9b98436b9ac5ec544c020d6d~mv2_d_5200_3200_s_4_2.webp");
             bat3.setDescription("The 110 model gives you the most balanced swing weight of all the standard models. It is the perfect fit for contact hitters looking for more bat speed.");
@@ -76,4 +80,17 @@ public class BatServiceImpl implements BatService {
     public BatViewModel findById(String id) {
         return this.modelMapper.map(this.batRepository.findById(id).orElseThrow(() -> new BatNotFoundException("No bat found")), BatViewModel.class);
     }
+
+    @Override
+    public List<BatViewModel> findByBrand(String brandName) {
+        BrandEntity brand = this.brandRepository.findByName(brandName).orElseThrow(() -> new BrandNotFoundException("brand not found"));
+        List<BatViewModel> bats = this.batRepository.findByBrand(brand)
+                .stream()
+                .map(batEntity -> this.modelMapper.map(batEntity, BatViewModel.class))
+                .collect(Collectors.toList());
+        return bats;
+    }
+
+
+
 }

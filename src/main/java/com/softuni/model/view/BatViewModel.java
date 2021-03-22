@@ -16,8 +16,17 @@ public class BatViewModel {
     private BrandEntity brand;
     private BigDecimal price;
     private String imageUrl;
+    private int quantity;
 
     public BatViewModel() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getDescription() {

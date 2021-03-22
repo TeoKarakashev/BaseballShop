@@ -11,4 +11,8 @@ public interface BatService {
     void initBats();
 
     BatViewModel findById(String id);
+
+    List<BatViewModel> findByBrand(String brandName);
+
+
 }

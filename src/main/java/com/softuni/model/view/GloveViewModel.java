@@ -15,12 +15,21 @@ public class GloveViewModel {
     private Double size;
     private BrandEntity brand;
     private BigDecimal price;
+    private int quantity;
 
     public GloveViewModel() {
     }
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setPrice(BigDecimal price) {

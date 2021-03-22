@@ -1,11 +1,13 @@
 package com.softuni.service.impl;
 
+import com.softuni.error.BrandNotFoundException;
 import com.softuni.error.GloveNotFoundException;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.GloveEntity;
 import com.softuni.model.service.ImportGloveRootService;
 import com.softuni.model.service.ImportGloveService;
 import com.softuni.model.view.GloveViewModel;
+import com.softuni.repository.BrandRepository;
 import com.softuni.repository.GloveRepository;
 import com.softuni.service.BrandService;
 import com.softuni.service.GloveService;
@@ -26,13 +28,15 @@ public class GloveServiceImpl implements GloveService {
     private final ModelMapper modelMapper;
     private final XmlParser xmlParser;
     private final BrandService brandService;
+    private final BrandRepository brandRepository;
 
     @Autowired
-    public GloveServiceImpl(GloveRepository gloveRepository, ModelMapper modelMapper, XmlParser xmlParser, BrandService brandService) {
+    public GloveServiceImpl(GloveRepository gloveRepository, ModelMapper modelMapper, XmlParser xmlParser, BrandService brandService, BrandRepository brandRepository) {
         this.gloveRepository = gloveRepository;
         this.modelMapper = modelMapper;
         this.xmlParser = xmlParser;
         this.brandService = brandService;
+        this.brandRepository = brandRepository;
     }
 
     @Override
@@ -69,11 +73,14 @@ public class GloveServiceImpl implements GloveService {
     }
 
     @Override
-    public List<GloveViewModel> findByBrand(BrandEntity brand) {
-
+    public List<GloveViewModel> findByBrand(String brandName) {
+        BrandEntity brand = this.brandRepository.findByName(brandName).orElseThrow(() -> new BrandNotFoundException("brand not found"));
         List<GloveViewModel> gloves = this.gloveRepository.findByBrand(brand).stream()
                 .map(gloveEntity -> this.modelMapper.map(gloveEntity, GloveViewModel.class))
                 .collect(Collectors.toList());
         return gloves;
+
     }
+
+
 }

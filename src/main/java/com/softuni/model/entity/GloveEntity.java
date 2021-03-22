@@ -20,11 +20,22 @@ public class GloveEntity extends BaseEntity {
     @Column(nullable = false)
     private Double size;
     @Column(nullable = false)
+    private int quantity;
+    @Column(nullable = false)
     private BigDecimal price;
     @ManyToOne
     private BrandEntity brand;
 
+
     public GloveEntity() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Double getSize() {

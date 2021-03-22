@@ -15,6 +15,7 @@ public class BatController {
 
     private final BatService batService;
 
+
     public BatController(BatService batService) {
         this.batService = batService;
     }
@@ -26,6 +27,45 @@ public class BatController {
         BatViewModel batViewModel = this.batService.findById(id);
         modelAndView.addObject("bat", batViewModel);
         modelAndView.setViewName("bats-details");
+        return modelAndView;
+    }
+
+    @GetMapping ("/viewAll")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView viewAll(ModelAndView modelAndView){
+        modelAndView.addObject("bats", this.batService.findAllBats());
+        modelAndView.setViewName("bats-all");
+
+        return modelAndView;
+    }
+
+    @GetMapping("/showRawlings")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showRawlings(ModelAndView modelAndView) {
+        modelAndView.addObject("bats",
+                this.batService.findByBrand("Rawlings"));
+
+
+        modelAndView.setViewName("bats-all");
+        return modelAndView;
+    }
+    @GetMapping("/showWilson")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showWilson(ModelAndView modelAndView) {
+
+        modelAndView.addObject("bats",
+                this.batService.findByBrand("Wilson"));
+        modelAndView.setViewName("bats-all");
+        return modelAndView;
+    }
+    @GetMapping("/showE7")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView showE7(ModelAndView modelAndView) {
+        modelAndView.addObject("bats",
+                this.batService.findByBrand("E7"));
+
+
+        modelAndView.setViewName("bats-all");
         return modelAndView;
     }
 }

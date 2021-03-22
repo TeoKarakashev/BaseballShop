@@ -17,6 +17,8 @@ public class BatEntity extends BaseEntity {
     private int weight;
     @Column(nullable = false)
     private int size;
+    @Column(nullable = false)
+    private int quantity;
     @Column(nullable = false, name = "image_url")
     private String imageUrl;
     @Column
@@ -31,6 +33,14 @@ public class BatEntity extends BaseEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setDescription(String description) {

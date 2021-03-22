@@ -23,9 +23,19 @@ public class ImportGloveService {
     private String description;
     @XmlElement(name = "brand-name")
     private String brand;
+    @XmlElement
+    private int quantity;
 
 
     public ImportGloveService() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {

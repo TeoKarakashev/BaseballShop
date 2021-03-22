@@ -1,6 +1,5 @@
 package com.softuni.service;
 
-import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.GloveEntity;
 import com.softuni.model.view.GloveViewModel;
 
@@ -18,5 +17,5 @@ public interface GloveService {
 
     GloveEntity getOne();
 
-    List<GloveViewModel> findByBrand(BrandEntity brand);
+    List<GloveViewModel> findByBrand(String brandName);
 }

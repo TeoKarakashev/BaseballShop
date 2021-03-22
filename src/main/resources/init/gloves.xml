@@ -6,6 +6,7 @@
         <material>LEATHER</material>
         <size>11.75</size>
         <price>300.00</price>
+        <quantity>40</quantity>
         <description>This isn’t just any ball glove. It’s the best ball glove in the world. The 2021 A2000 glove lineup
             is designed for the game’s elite players, using the most premium ball glove materials in the world
         </description>
@@ -19,6 +20,7 @@
         <material>LEATHER</material>
         <size>11.50</size>
         <price>299.99</price>
+        <quantity>40</quantity>
         <description>In addition, it features the same superior comfort and feel you expect from any HOH glove thanks to
             its deer-tanned palm lining, thermoformed wrist lining, and padded thumb sleeve. This infield glove's
             200-pattern is our most popular infield pattern, due to its large pocket and extreme versatility. All of
@@ -36,6 +38,7 @@
         <material>SYNTHETIC</material>
         <size>11.50</size>
         <price>69.00</price>
+        <quantity>40</quantity>
         <description>The smallest offering in our redesigned A500 lineup, this 10.5" model features an incredibly
             durable X2 Web. A completely reconfigured hand opening is smaller than ever, giving youth players a snugger
             fit - allowing for more comfort and control in the field.

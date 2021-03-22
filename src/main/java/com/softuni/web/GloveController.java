@@ -1,6 +1,5 @@
 package com.softuni.web;
 
-import com.softuni.error.GloveNotFoundException;
 import com.softuni.model.view.GloveViewModel;
 import com.softuni.repository.BrandRepository;
 import com.softuni.service.BrandService;
@@ -50,7 +49,7 @@ public class GloveController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView showRawlings(ModelAndView modelAndView) {
         modelAndView.addObject("gloves",
-                this.gloveService.findByBrand(this.brandRepository.findByName("Rawlings").orElseThrow(() ->new GloveNotFoundException("No glove found"))));
+                this.gloveService.findByBrand("Rawlings"));
 
 
         modelAndView.setViewName("gloves-all");
@@ -61,7 +60,7 @@ public class GloveController {
     public ModelAndView showWilson(ModelAndView modelAndView) {
 
         modelAndView.addObject("gloves",
-                this.gloveService.findByBrand(this.brandRepository.findByName("Wilson").orElseThrow(() ->new GloveNotFoundException("No glove found"))));
+                this.gloveService.findByBrand("Wilson"));
         modelAndView.setViewName("gloves-all");
         return modelAndView;
     }
@@ -69,7 +68,7 @@ public class GloveController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView showE7(ModelAndView modelAndView) {
         modelAndView.addObject("gloves",
-                this.gloveService.findByBrand(this.brandRepository.findByName("E7").orElseThrow(() ->new GloveNotFoundException("No glove found"))));
+                this.gloveService.findByBrand("E7"));
 
 
         modelAndView.setViewName("gloves-all");
