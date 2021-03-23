@@ -115,5 +115,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
     }
 
+    @Override
+    public List<UserEntity> findAll() {
+        return this.userRepository.findAll();
+    }
+
 
 }

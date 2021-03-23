@@ -13,14 +13,16 @@ public class DbInit implements CommandLineRunner {
     private final BrandService brandService;
     private final BatService batService;
     private final GloveService gloveService;
+    private final TeamService teamService;
 
     @Autowired
-    public DbInit(RoleService roleService, UserService userService, BrandService brandService, BatService batService, GloveService gloveService) {
+    public DbInit(RoleService roleService, UserService userService, BrandService brandService, BatService batService, GloveService gloveService, TeamService teamService) {
         this.roleService = roleService;
         this.userService = userService;
         this.brandService = brandService;
         this.batService = batService;
         this.gloveService = gloveService;
+        this.teamService = teamService;
     }
 
     @Override
@@ -30,6 +32,6 @@ public class DbInit implements CommandLineRunner {
         this.batService.initBats();
         this.gloveService.initGloves();
         this.userService.initAdminUser();
-
+        this.teamService.initTeams();
     }
 }

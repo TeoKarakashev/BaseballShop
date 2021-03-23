@@ -73,7 +73,7 @@ public class BatServiceImpl implements BatService {
             bat3.setMaterial(BatMaterial.WOOD);
             bat3.setSize(32);
             bat3.setWeight(29);
-            bat3.setQuantity(40);
+            bat3.setQuantity(1);
             bat3.setBrand(this.brandRepository.findByName("E7").orElseThrow(() -> new BrandNotFoundException("No such brand")));
             bat3.setImageUrl("https://static.wixstatic.com/media/4343c6_f7b08d8a9b98436b9ac5ec544c020d6d~mv2_d_5200_3200_s_4_2.jpg/v1/fill/w_979,h_599,al_c,q_85,usm_0.66_1.00_0.01/4343c6_f7b08d8a9b98436b9ac5ec544c020d6d~mv2_d_5200_3200_s_4_2.webp");
             bat3.setDescription("The 110 model gives you the most balanced swing weight of all the standard models. It is the perfect fit for contact hitters looking for more bat speed.");

@@ -1,5 +1,6 @@
 package com.softuni.service;
 
+import com.softuni.model.entity.UserEntity;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.service.UserServiceModel;
 
@@ -18,4 +19,6 @@ public interface UserService {
     List<String> findAllUsers();
 
     void promoteUserToAdmin(String username);
+
+    List<UserEntity> findAll();
 }

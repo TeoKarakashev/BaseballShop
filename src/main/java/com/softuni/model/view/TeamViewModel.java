@@ -1,40 +1,39 @@
-package com.softuni.model.entity;
+package com.softuni.model.view;
 
-import javax.persistence.*;
+import com.softuni.model.entity.UserEntity;
+
 import java.time.LocalDate;
 import java.util.List;
 
+public class TeamViewModel {
 
-@Entity
-@Table(name = "teams")
-public class TeamEntity extends BaseEntity{
-
-    @Column(nullable = false, unique = true)
+    private String id;
     private String name;
-    @Column(nullable = false)
     private LocalDate created;
-    @Column(columnDefinition = "text")
     private String description;
-    @Column(name = "image_url",length = 512)
     private String imageUrl;
-    @Column(nullable = false)
     private String address;
-    @Column(nullable = false)
     private int capacity;
-    @ManyToOne
     private UserEntity creator;
-    @OneToMany(mappedBy = "team")
     private List<UserEntity> players;
 
-    public TeamEntity() {
+    public TeamViewModel() {
     }
 
-    public UserEntity getCreator() {
-        return creator;
+    public String getId() {
+        return id;
     }
 
-    public void setCreator(UserEntity creator) {
-        this.creator = creator;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<UserEntity> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<UserEntity> players) {
+        this.players = players;
     }
 
     public String getName() {
@@ -84,5 +83,12 @@ public class TeamEntity extends BaseEntity{
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-}
 
+    public UserEntity getCreator() {
+        return creator;
+    }
+
+    public void setCreator(UserEntity creator) {
+        this.creator = creator;
+    }
+}
