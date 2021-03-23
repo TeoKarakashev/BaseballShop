@@ -6,20 +6,34 @@
 <body>
 <main>
     <th:block th:include="~{fragments/navigation}"></th:block>
-    <div th:object="${glove}" class="container bg-blur rounded mt-5 text-white">
-        <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
-            <img th:src="*{imageUrl}" width="100%">
+    <form method="post" th:action="@{/gloves/buy/{id}(id = *{id})}">
+        <div th:object="${glove}" class="container bg-blur rounded mt-5 text-white">
+            <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                <img th:src="*{imageUrl}" width="100%">
+            </div>
+            <h3 th:text="|Name:*{brand.name} *{name}|"></h3>
+            <h3 th:text="|Price: *{price}|"></h3>
+
+            <h3 th:text="|Size: *{size}|"></h3>
+            <h3 th:text="|Description: *{description}|"></h3>
+            <div th:if="*{quantity > 0}">
+                <h3 th:text="|Quantity: *{quantity}|"></h3>
+                <div class="col col-md-3">
+                    <div class="button-holder d-flex">
+                        <input type="submit" class="btn btn-info btn-lg" value="Buy"/>
+                    </div>
+                </div>
+            </div>
+            <h4 th:if="*{quantity <= 0}" th:class="text-white">We are sold on this model, we will restock as soon as
+                possible</h4>
+            <div th:if="*{quantity <= 0}" class="col col-md-3">
+                <div >
+                    <a th:class="similarBtn" href="/gloves/viewAll">Visit Similar items</a>
+                </div>
+            </div>
         </div>
-        <h3 th:text="|Name:*{brand.name} *{name}|"></h3><h3 th:text="|Price: *{price}|"></h3>
+    </form>
 
-        <h3 th:text="|Size: *{size}|"></h3>
-        <h3 th:text="|Description: *{description}|"></h3>
-        <h3 th:text="|Quantity: *{quantity}|"></h3>
-        <th:block >
-            <a href="/gloves/buy">Buy</a>
-        </th:block>
-
-    </div>
 </main>
 <footer class="footer bg-transparent  py-2">
     <th:block th:include="~{/fragments/footer}"></th:block>

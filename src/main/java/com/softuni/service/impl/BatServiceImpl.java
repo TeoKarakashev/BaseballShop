@@ -2,12 +2,15 @@ package com.softuni.service.impl;
 
 import com.softuni.error.BatNotFoundException;
 import com.softuni.error.BrandNotFoundException;
+import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.BatEntity;
 import com.softuni.model.entity.BrandEntity;
+import com.softuni.model.entity.UserEntity;
 import com.softuni.model.entity.enums.BatMaterial;
 import com.softuni.model.view.BatViewModel;
 import com.softuni.repository.BatRepository;
 import com.softuni.repository.BrandRepository;
+import com.softuni.repository.UserRepository;
 import com.softuni.service.BatService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,12 +25,14 @@ public class BatServiceImpl implements BatService {
     private final BatRepository batRepository;
     private final ModelMapper modelMapper;
     private final BrandRepository brandRepository;
+    private final UserRepository userRepository;
 
-    public BatServiceImpl(BatRepository batRepository, ModelMapper modelMapper, BrandRepository brandRepository) {
+    public BatServiceImpl(BatRepository batRepository, ModelMapper modelMapper, BrandRepository brandRepository, UserRepository userRepository) {
         this.batRepository = batRepository;
         this.modelMapper = modelMapper;
 
         this.brandRepository = brandRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -91,6 +96,17 @@ public class BatServiceImpl implements BatService {
         return bats;
     }
 
+    @Override
+    public void buy(String id, String username) {
+        UserEntity user = this.userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("no user found"));
+        BatEntity bat = this.batRepository.findById(id).orElseThrow(() -> new BatNotFoundException("no bat found"));
+        user.setBat(bat);
+        this.userRepository.save(user);
+        bat.setQuantity(bat.getQuantity() - 1);
+            this.batRepository.save(bat);
+
+
+    }
 
 
 }

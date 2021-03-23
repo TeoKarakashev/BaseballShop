@@ -18,4 +18,6 @@ public interface GloveService {
     GloveEntity getOne();
 
     List<GloveViewModel> findByBrand(String brandName);
+
+    void buy(String id, String name);
 }

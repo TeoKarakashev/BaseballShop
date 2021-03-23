@@ -14,6 +14,18 @@ body {
     padding: 20px;
 }
 
+.similarBtn:link, .similarBtn:visited{
+    background-color: #17a2b8;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.similarBtn:hover, .similarBtn:active {
+    background-color: #005cbf;
+}
+
 
 .bottom {
     position: fixed;

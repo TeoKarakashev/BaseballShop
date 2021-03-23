@@ -84,7 +84,6 @@ public class UserServiceImpl implements UserService {
             admin.setDescription("This is an admin account");
             admin.setRoles(Set.of(adminRole, useRole));
             admin.setPassword(passwordEncoder.encode("123"));
-            admin.setGlove(this.gloveService.getOne());
             this.userRepository.save(admin);
         }
     }

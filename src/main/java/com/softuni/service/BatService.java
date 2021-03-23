@@ -15,4 +15,5 @@ public interface BatService {
     List<BatViewModel> findByBrand(String brandName);
 
 
+    void buy(String id, String name);
 }

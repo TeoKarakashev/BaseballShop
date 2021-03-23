@@ -8,9 +8,12 @@
 <main>
     <th:block th:include="~{fragments/navigation}"></th:block>
 
-    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showRawlings" class="badge badge-pill badge-dark">Show only Rawlings</a></h3>
-    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showWilson" class="badge badge-pill badge-dark">Show only Wilson</a></h3>
-    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showE7" class="badge badge-pill badge-dark">Show Only E7</a></h3>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showRawlings" class="badge badge-pill badge-dark">Show
+        only Rawlings</a></h3>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showWilson" class="badge badge-pill badge-dark">Show
+        only Wilson</a></h3>
+    <h3 style="float:left; margin:10px 140px 10px"><a href="/gloves/showE7" class="badge badge-pill badge-dark">Show
+        Only E7</a></h3>
 
     <hr class="hr-3"/>
     <hr class="hr-3"/>
@@ -18,56 +21,57 @@
     <hr class="hr-3"/>
     <hr class="hr-3"/>
     <div th:if="${gloves.size()==0}">
-        <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">No gloves are available at the moment!</span></h2>
+        <h2 class="text-center mt-2"><span
+                class="badge badge-pill badge-dark">No gloves are available at the moment!</span></h2>
     </div>
     <div th:unless="${gloves.size()==0}" class="container-fluid">
         <div class=" row mx-auto d-flex flex-row justify-content-center">
             <div th:each="g : ${gloves}" th:object="${g}" class="card col-sm-3 col-md-3  col-lg-2 m-1 p-0">
-                <div th:if="${g.getBrand().name} == 'Rawlings'">
-                    <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
-                    <div class="card-img-top-wrapper">
-                        <a th:href="@{details/{id}(id = *{id})}">
-                            <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
+                    <div th:if="${g.getBrand().name} == 'Rawlings'">
+                        <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
+                        <div class="card-img-top-wrapper">
+                            <a th:href="@{details/{id}(id = *{id})}">
+                                <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
+                        </div>
+                        <div class="card-body pb-1">
+                            <h5 class="card-title text-center" th:text="|*{name}|"></h5>
+                        </div>
+                        <ul class="offer-details list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="card-body pb-1">
-                        <h5 class="card-title text-center" th:text="|*{name}|"></h5>
+                    <div th:if="${g.getBrand().name} == 'Wilson'">
+                        <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
+                        <div class="card-img-top-wrapper">
+                            <a th:href="@{details/{id}(id = *{id})}">
+                                <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
+                        </div>
+                        <div class="card-body pb-1">
+                            <h5 class="card-title text-center" th:text="|*{name}|"></h5>
+                        </div>
+                        <ul class="offer-details list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="offer-details list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
-                        </li>
-                    </ul>
-                </div>
-                <div th:if="${g.getBrand().name} == 'Wilson'">
-                    <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
-                    <div class="card-img-top-wrapper">
-                        <a th:href="@{details/{id}(id = *{id})}">
-                            <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
+                    <div th:if="${g.getBrand().name} == 'E7'">
+                        <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
+                        <div class="card-img-top-wrapper">
+                            <a th:href="@{details/{id}(id = *{id})}">
+                                <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
+                        </div>
+                        <div class="card-body pb-1">
+                            <h5 class="card-title text-center" th:text="|*{name}|"></h5>
+                        </div>
+                        <ul class="offer-details list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="card-body pb-1">
-                        <h5 class="card-title text-center" th:text="|*{name}|"></h5>
-                    </div>
-                    <ul class="offer-details list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
-                        </li>
-                    </ul>
-                </div>
-                <div th:if="${g.getBrand().name} == 'E7'">
-                    <h1 class="card-title text-center" th:text="*{getBrand().name}"></h1>
-                    <div class="card-img-top-wrapper">
-                        <a th:href="@{details/{id}(id = *{id})}">
-                            <img class="card-img-top" th:src="*{imageUrl}" alt="image"></a>
-                    </div>
-                    <div class="card-body pb-1">
-                        <h5 class="card-title text-center" th:text="|*{name}|"></h5>
-                    </div>
-                    <ul class="offer-details list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="card-text text-center"><span th:text="|Price: *{price}|"></span></div>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
