@@ -9,6 +9,9 @@
 
     <div class="container-fluid">
         <h2 class="text-center text-white mt-5">Available teams</h2>
+        <th:block th:if="${teams.size() == 0}">
+            <h2 class="text-center mt-2"><span class="text-white">No Teams are available at the moment!</span></h2>
+        </th:block>
         <div class="offer row mx-auto d-flex flex-row justify-content-center">
             <div th:each="t : ${teams}" th:object="${t}" class="offer card col-sm-5 col-md-2  col-lg-2 m-1 p-0">
                 <div class="card-img-top-wrapper">

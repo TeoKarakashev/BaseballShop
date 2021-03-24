@@ -38,13 +38,13 @@ public class TeamController {
     }
 
     @GetMapping("/details/{id}")
-    public ModelAndView details(ModelAndView modelAndView, @PathVariable String id){
+    public ModelAndView details(ModelAndView modelAndView, @PathVariable String id, Principal principal){
 
         modelAndView.addObject("names", this.teamService.findAllPlayersNames(id));
         modelAndView.addObject("team",this.teamService.findById(id));
-        modelAndView.addObject("canLeave", true);
-        modelAndView.addObject("canJoin", true);
-        modelAndView.addObject("isCreator", true);
+        modelAndView.addObject("canLeave", this.teamService.userIsPartOfTheTeam(id, principal.getName()));
+        modelAndView.addObject("canJoin", this.teamService.userCanJoin(id, principal.getName()));
+        modelAndView.addObject("isCreator", this.teamService.isCreator(id, principal.getName()));
 
         modelAndView.setViewName("team-details");
 
@@ -54,6 +54,19 @@ public class TeamController {
     @PostMapping("/join/{id}")
     public String join(@PathVariable String id, Principal principal){
         this.teamService.addPlayerToTeam(id, principal.getName());
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete/{id}")
+    private String delete(@PathVariable String id){
+        this.teamService.delete(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/leave/{id}")
+    public String leave(@PathVariable String id, Principal principal){
+        this.teamService.removePlayerFromTeam(id, principal.getName());
 
         return "redirect:/";
     }

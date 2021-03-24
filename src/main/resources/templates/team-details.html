@@ -31,21 +31,11 @@
                                            data-large-mode="true" th:value="*{address}">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <th:block th:if="*{players.size() == 0}">
                                         <label for="noCapacity" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Capacity
                                         </label>
                                         <input disabled id="noCapacity" name="noCapacity" type="text"
                                                class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                               data-large-mode="true" th:value="|0/40|">
-                                        </th:block>
-                                    <th:block th:if="*{players.size() > 0}">
-                                        <label for="noCapacity" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Capacity
-                                        </label>
-                                        <input disabled id="capacity" name="capacity" type="text"
-                                               class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                               data-large-mode="true" th:value="|*{players.size()}/40|">
-                                    </th:block>
-                                    </th:block>
+                                               data-large-mode="true" th:value="|*{players.size()}/*{capacity}|">
                                 </div>
                                 <div class="input-group mb-3">
                                     <label for="players" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Players

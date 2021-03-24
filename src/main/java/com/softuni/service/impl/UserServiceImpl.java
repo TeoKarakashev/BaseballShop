@@ -114,6 +114,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void save(UserServiceModel user) {
+        this.userRepository.save(this.modelMapper.map(user, UserEntity.class));
+    }
+
+    @Override
     public void promoteUserToAdmin(String username) {
         RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);
         RoleEntity useRole = this.roleService.getRoleByName(UserRole.USER);

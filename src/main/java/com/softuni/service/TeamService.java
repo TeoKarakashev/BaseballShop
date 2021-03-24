@@ -14,4 +14,14 @@ public interface TeamService {
     void addPlayerToTeam(String id, String name);
 
     List<String> findAllPlayersNames(String id);
+
+    boolean userIsPartOfTheTeam(String id, String name);
+
+    boolean userCanJoin(String id, String name);
+
+    Object isCreator(String id, String name);
+
+    void delete(String id);
+
+    void removePlayerFromTeam(String id, String name);
 }

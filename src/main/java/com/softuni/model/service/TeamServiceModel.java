@@ -1,40 +1,37 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.*;
+import com.softuni.model.entity.UserEntity;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+public class TeamServiceModel {
 
-@Entity
-@Table(name = "teams")
-public class TeamEntity extends BaseEntity{
+    private String id;
 
-    @Column(nullable = false, unique = true)
     private String name;
-    @Column(nullable = false)
+
     private LocalDate created;
-    @Column(columnDefinition = "text")
+
     private String description;
-    @Column(name = "image_url",length = 512)
+
     private String imageUrl;
-    @Column(nullable = false)
+
     private String address;
-    @Column(nullable = false)
+
     private int capacity;
-    @ManyToOne
+
     private UserEntity creator;
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
-    private List<UserEntity> players;
 
-    public TeamEntity() {
+    private List<UserEntity> players = new ArrayList<>();
+
+    public String getId() {
+        return id;
     }
 
-    public UserEntity getCreator() {
-        return creator;
-    }
-
-    public void setCreator(UserEntity creator) {
-        this.creator = creator;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -85,6 +82,14 @@ public class TeamEntity extends BaseEntity{
         this.capacity = capacity;
     }
 
+    public UserEntity getCreator() {
+        return creator;
+    }
+
+    public void setCreator(UserEntity creator) {
+        this.creator = creator;
+    }
+
     public List<UserEntity> getPlayers() {
         return players;
     }
@@ -92,10 +97,4 @@ public class TeamEntity extends BaseEntity{
     public void setPlayers(List<UserEntity> players) {
         this.players = players;
     }
-
-
-    public void removePlayer(UserEntity player){
-        this.players.remove(player);
-    }
 }
-

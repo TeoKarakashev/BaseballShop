@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class UserServiceModel {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String username;
@@ -22,6 +23,14 @@ public class UserServiceModel {
     private TeamEntity team;
 
     public UserServiceModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {

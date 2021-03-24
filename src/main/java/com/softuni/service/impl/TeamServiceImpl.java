@@ -1,9 +1,9 @@
 package com.softuni.service.impl;
 
 import com.softuni.error.TeamNotFoundException;
-import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.TeamEntity;
 import com.softuni.model.entity.UserEntity;
+import com.softuni.model.service.TeamServiceModel;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.model.view.TeamViewModel;
 import com.softuni.repository.TeamRepository;
@@ -35,7 +35,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void initTeams() {
-        if(teamRepository.count() == 0) {
+        if (teamRepository.count() == 0) {
 
             UserServiceModel admin = this.userService.findByUsername("admin");
 
@@ -52,7 +52,7 @@ public class TeamServiceImpl implements TeamService {
             team2.setName("New York Yankees");
             team2.setImageUrl("https://a3.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fmlb%2F500%2Fnyy.png");
             team2.setCreated(LocalDate.now());
-            team2.setCapacity(20);
+            team2.setCapacity(1);
             team2.setCreator(this.userService.findAll().get(0));
             team2.setDescription("The New York Yankees are an American professional baseball team based in the New York City borough of the Bronx. They compete in Major League Baseball (MLB) as a member club of the American League (AL) East division.");
             team2.setAddress("One East 161st Street Bronx, NY 10451");
@@ -72,16 +72,16 @@ public class TeamServiceImpl implements TeamService {
     public TeamViewModel findById(String id) {
         return this.modelMapper
                 .map(this.teamRepository.findById(id)
-                        .orElseThrow(() -> new TeamNotFoundException("No team found")),
+                                .orElseThrow(() -> new TeamNotFoundException("No team found")),
                         TeamViewModel.class);
     }
 
     @Override
     public void addPlayerToTeam(String id, String name) {
-        UserEntity userEntity = this.userRepository.findByUsername(name).orElseThrow(() -> new UserNotFoundException("no user found"));
+        UserServiceModel user = this.userService.findByUsername(name);
         TeamEntity teamEntity = this.teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("team not found"));
-        userEntity.setTeam(teamEntity);
-        this.userRepository.save(userEntity);
+        user.setTeam(teamEntity);
+        this.userService.save(user);
     }
 
     @Override
@@ -90,6 +90,58 @@ public class TeamServiceImpl implements TeamService {
         TeamEntity teamEntity = this.teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("Team not found"));
         teamEntity.getPlayers().forEach(userEntity -> names.add(userEntity.getUsername()));
         return names;
+    }
+
+    @Override
+    public boolean userIsPartOfTheTeam(String id, String name) {
+        UserServiceModel user = this.userService.findByUsername(name);
+        TeamServiceModel team = this.modelMapper.map(this.teamRepository.findById(id)
+                .orElseThrow(() -> new TeamNotFoundException("team not found")), TeamServiceModel.class);
+        for (UserEntity player : team.getPlayers()) {
+            if (player.getId().equals(user.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean userCanJoin(String id, String name) {
+        System.out.println();
+        if(this.userService.findByUsername(name).getTeam() != null){
+            return false;
+        }
+        TeamEntity team = this.teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("no team found"));
+
+        return team.getPlayers().size() < team.getCapacity();
+    }
+
+    @Override
+    public Object isCreator(String id, String name) {
+        UserServiceModel user = this.userService.findByUsername(name);
+        TeamServiceModel team = this.modelMapper.map(this.teamRepository.findById(id)
+                .orElseThrow(() -> new TeamNotFoundException("team not found")), TeamServiceModel.class);
+        return user.getId().equals(team.getCreator().getId());
+    }
+
+    @Override
+    public void delete(String id) {
+        TeamServiceModel team = this.modelMapper.map(this.teamRepository.findById(id).
+                orElseThrow(() -> new TeamNotFoundException("not team found")), TeamServiceModel.class);
+        for (UserEntity player : team.getPlayers()) {
+            player.setTeam(null);
+            this.userService.save(this.modelMapper.map(player, UserServiceModel.class));
+        }
+
+        this.teamRepository.deleteById(id);
+    }
+
+    @Override
+    public void removePlayerFromTeam(String id, String name) {
+        UserServiceModel user = this.userService.findByUsername(name);
+        user.setTeam(null);
+        this.userService.save(user);
+
     }
 
 

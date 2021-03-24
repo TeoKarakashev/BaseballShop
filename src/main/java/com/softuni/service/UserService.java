@@ -24,4 +24,5 @@ public interface UserService {
 
     List<String> findAllUsernames();
 
+    void save(UserServiceModel userEntity);
 }
