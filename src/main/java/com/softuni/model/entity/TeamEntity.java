@@ -23,7 +23,7 @@ public class TeamEntity extends BaseEntity{
     private int capacity;
     @ManyToOne
     private UserEntity creator;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     private List<UserEntity> players;
 
     public TeamEntity() {
@@ -83,6 +83,18 @@ public class TeamEntity extends BaseEntity{
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public List<UserEntity> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<UserEntity> players) {
+        this.players = players;
+    }
+
+    public void addPlayer(UserEntity player){
+        this.players.add(player);
     }
 }
 

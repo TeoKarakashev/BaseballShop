@@ -1,16 +1,20 @@
 package com.softuni.service.impl;
 
 import com.softuni.error.TeamNotFoundException;
+import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.TeamEntity;
+import com.softuni.model.entity.UserEntity;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.model.view.TeamViewModel;
 import com.softuni.repository.TeamRepository;
+import com.softuni.repository.UserRepository;
 import com.softuni.service.TeamService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,11 +24,13 @@ public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
-    public TeamServiceImpl(TeamRepository teamRepository, UserService userService, ModelMapper modelMapper) {
+    public TeamServiceImpl(TeamRepository teamRepository, UserService userService, ModelMapper modelMapper, UserRepository userRepository) {
         this.teamRepository = teamRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -69,4 +75,22 @@ public class TeamServiceImpl implements TeamService {
                         .orElseThrow(() -> new TeamNotFoundException("No team found")),
                         TeamViewModel.class);
     }
+
+    @Override
+    public void addPlayerToTeam(String id, String name) {
+        UserEntity userEntity = this.userRepository.findByUsername(name).orElseThrow(() -> new UserNotFoundException("no user found"));
+        TeamEntity teamEntity = this.teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("team not found"));
+        userEntity.setTeam(teamEntity);
+        this.userRepository.save(userEntity);
+    }
+
+    @Override
+    public List<String> findAllPlayersNames(String id) {
+        List<String> names = new ArrayList<>();
+        TeamEntity teamEntity = this.teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("Team not found"));
+        teamEntity.getPlayers().forEach(userEntity -> names.add(userEntity.getUsername()));
+        return names;
+    }
+
+
 }

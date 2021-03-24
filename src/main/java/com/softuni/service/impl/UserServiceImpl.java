@@ -7,7 +7,6 @@ import com.softuni.model.entity.enums.UserRole;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.repository.UserRepository;
-import com.softuni.service.GloveService;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -31,16 +30,17 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final BaseballUserService baseballUserService;
-    private final GloveService gloveService;
+
+
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BaseballUserService baseballUserService, GloveService gloveService) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BaseballUserService baseballUserService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.baseballUserService = baseballUserService;
-        this.gloveService = gloveService;
+
     }
 
     @Override
@@ -107,6 +107,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<String> findAllUsernames(){
+        List<UserServiceModel> users = userRepository.findAll().stream()
+                .map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class)).collect(Collectors.toList());
+        return users.stream().map(UserServiceModel::getUsername).collect(Collectors.toList());
+    }
+
+    @Override
     public void promoteUserToAdmin(String username) {
         RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);
         RoleEntity useRole = this.roleService.getRoleByName(UserRole.USER);
@@ -119,6 +126,8 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> findAll() {
         return this.userRepository.findAll();
     }
+
+
 
 
 }

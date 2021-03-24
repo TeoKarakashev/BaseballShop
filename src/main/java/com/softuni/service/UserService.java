@@ -21,4 +21,7 @@ public interface UserService {
     void promoteUserToAdmin(String username);
 
     List<UserEntity> findAll();
+
+    List<String> findAllUsernames();
+
 }

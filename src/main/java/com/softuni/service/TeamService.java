@@ -10,4 +10,8 @@ public interface TeamService {
     List<TeamViewModel> findAllTeams();
 
     TeamViewModel findById(String id);
+
+    void addPlayerToTeam(String id, String name);
+
+    List<String> findAllPlayersNames(String id);
 }
