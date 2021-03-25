@@ -22,8 +22,9 @@ public class EquipmentController {
     @GetMapping("")
     public ModelAndView all(ModelAndView modelAndView){
 
-        //TODO cloudinary    sell equipment
-        //TODO add bats from xml, Think of something on the home page, details page for bats and gloves, see all btn
+        //TODO cloudinary, schedule, AOP, RestController?
+        //TODO  Think of something on the home page, Add team,add bat,add glove, add picture from profile
+
 
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
         modelAndView.addObject("bats", this.batService.findAllBats());

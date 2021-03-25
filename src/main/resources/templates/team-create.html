@@ -11,46 +11,52 @@
     <div class="container-fluid text-white">
         <div class="container-fluid"></div>
         <h1 class="text-center mt-2"> Create Team</h1>
+        <div th:if="${teamExists}" class="alert alert-danger text-white" role="alert">
+            Team name is already occupied
+        </div>
         <hr class="hr-3 w-25 bg-white"/>
-        <form class="mx-auto w-25 bg-blur" method="POST" action="/teams/create">
+        <form class="mx-auto w-25 bg-blur"
+              th:object="${teamCreateBindingModel}"
+              method="POST"
+              th:action="@{/teams/create}">
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="name" class="h4 mb-2">Name</label>
                 </div>
-                <input class="form-control" id="name" name="name"/>
-                <small class="text-danger">Name error message</small>
+                <input th:field="*{name}" th:errorclass="bg-danger" class="form-control" id="name" name="name"/>
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Name error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="description" class="h4 mb-2">Description</label>
                 </div>
-                <input type="text" class="form-control" id="description" name="description"/>
+                <input th:field="*{description}" th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"/>
 
-                <small class="text-danger">Description error message</small>
+                <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Description error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="imageUrl" class="h4 mb-2">Image</label>
                 </div>
-                <input type="text" class="form-control" id="imageUrl" name="imageUrl"/>
+                <input th:field="*{imageUrl}" th:errorclass="bg-danger" type="file" class="form-control" id="imageUrl" name="imageUrl"/>
 
-                <small class="text-danger">Image error message</small>
+                <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger">Image error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="address" class="h4 mb-2">Address</label>
                 </div>
-                <input type="text" class="form-control" id="address" name="address"/>
+                <input th:field="*{address}" th:errorclass="bg-danger" type="text" class="form-control" id="address" name="address"/>
 
-                <small class="text-danger">Address error message</small>
+                <small th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger">Address error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="capacity" class="h4 mb-2">Capacity</label>
                 </div>
-                <input type="number" class="form-control" id="capacity" name="capacity"/>
+                <input th:field="*{capacity}" th:errorclass="bg-danger" type="number" class="form-control" id="capacity" name="capacity"/>
 
-                <small class="text-danger">Capacity error message</small>
+                <small  th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"class="text-danger">Capacity error message</small>
             </div>
 
 

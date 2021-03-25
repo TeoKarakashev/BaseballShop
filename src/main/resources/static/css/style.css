@@ -14,7 +14,7 @@ body {
     padding: 20px;
 }
 
-.fuckingBtn{
+.btnLogout{
     background: none;
     border: none;
     float: right;
@@ -22,11 +22,11 @@ body {
 
 
 
-.fuckingList {
-    float: right;
+fuckingList {
+. float: right;
 }
 
-.fuckingBtn:visited {
+.btnLogout:visited {
     border: none;
 }
 
@@ -51,6 +51,10 @@ body {
 .align-center{
     align-items: center;
 }
+
+
+
+
 
 
 

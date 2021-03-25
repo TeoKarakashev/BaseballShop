@@ -10,6 +10,9 @@
 
     <div class="container">
         <h2 class="text-center text-white">Register Player</h2>
+        <div th:if="${userExists}" class="alert alert-danger text-white" role="alert">
+            Username is already occupied
+        </div>
         <form method="POST"
               th:action="@{/users/register}"
               th:object="${userRegisterBindingModel}"
@@ -17,7 +20,7 @@
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="firstName" class="text-white font-weight-bold">First Name</label>
-                    <input th:field="*{firstName}" th:errorclass="bg-danger" id="firstName"  type="text" class="form-control"
+                    <input th:field="*{firstName}" th:errorclass="bg-danger" required minlength="3" id="firstName"  type="text" class="form-control"
                            placeholder="First name"/>
                     <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="errors alert alert-danger">
                         First name is required.
@@ -25,7 +28,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label  for="lastName" class="text-white font-weight-bold">Last Name</label>
-                    <input th:field="*{lastName}" th:errorclass="bg-danger" id="lastName"  type="text" class="form-control"
+                    <input th:field="*{lastName}" th:errorclass="bg-danger" required minlength="3" id="lastName"  type="text" class="form-control"
                            placeholder="Last Name"/>
                     <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="errors alert alert-danger">
                         Last name is required.
@@ -35,7 +38,7 @@
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="username" class="text-white font-weight-bold">Username</label>
-                    <input th:field="*{username}" th:errorclass="bg-danger" id="username" type="text" min="3" max="20" class="form-control"
+                    <input th:field="*{username}" th:errorclass="bg-danger" required minlength="3" id="username" type="text" min="3" max="20" class="form-control"
                            placeholder="Username"/>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="errors alert alert-danger">
                         Username is required.
@@ -43,7 +46,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="email" class="text-white font-weight-bold">Email</label>
-                    <input th:field="*{email}" th:errorclass="bg-danger" id="email" type="email" class="form-control"
+                    <input th:field="*{email}" th:errorclass="bg-danger" required id="email" type="email" class="form-control"
                            placeholder="Email"/>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errors alert alert-danger">
                         Email is required.
@@ -55,7 +58,7 @@
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="description" class="text-white font-weight-bold">Description</label>
-                    <input th:field="*{description}" th:errorclass="bg-danger" id="description" type="text" min="5"  class="form-control"
+                    <input th:field="*{description}" th:errorclass="bg-danger" required minlength="5" id="description" type="text" min="5"  class="form-control"
                            placeholder="Description"/>
                     <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errors alert alert-danger">
                         Description is required.
@@ -63,7 +66,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="age" class="text-white font-weight-bold">Age</label>
-                    <input th:field="*{age}" th:errorclass="bg-danger" id="age" type="number" class="form-control"
+                    <input th:field="*{age}" th:errorclass="bg-danger" required min="16" id="age" type="number" class="form-control"
                            placeholder="Age"/>
                     <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errors alert alert-danger">
                         Age is required.
@@ -73,7 +76,7 @@
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="password" class="text-white font-weight-bold">Password</label>
-                    <input th:field="*{password}" th:errorclass="bg-danger" id="password" type="password" min="3" max="20"  class="form-control"
+                    <input th:field="*{password}" th:errorclass="bg-danger" required minlength="3" id="password" type="password" min="3" max="20"  class="form-control"
                            placeholder="Password"/>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errors alert alert-danger">
                         Password is required.
@@ -81,7 +84,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="confirmPassword" class="text-white font-weight-bold">Confirm Password</label>
-                    <input th:field="*{confirmPassword}" th:errorclass="bg-danger" id="confirmPassword" type="password" min="3" max="20" class="form-control"
+                    <input th:field="*{confirmPassword}" th:errorclass="bg-danger"  required minlength="3" id="confirmPassword" type="password" min="3" max="20" class="form-control"
                            placeholder="Confirm Password"/>
                     <p th:if="${passDontMatch}" class="errors alert alert-danger">
                         Passwords don't match.
@@ -95,7 +98,7 @@
                         <input type="submit" class="btn btn-info btn-lg " value="Register"/>
                     </div>
                 </div>
-                <small th:if="${userExists}" id="usernameUniqueError"  class="text-white font-weight-bold">Username is already occupied</small>
+
             </div>
         </form>
     </div>

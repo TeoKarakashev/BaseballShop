@@ -107,7 +107,6 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public boolean userCanJoin(String id, String name) {
-        System.out.println();
         if(this.userService.findByUsername(name).getTeam() != null){
             return false;
         }
@@ -117,7 +116,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Object isCreator(String id, String name) {
+    public boolean isCreator(String id, String name) {
         UserServiceModel user = this.userService.findByUsername(name);
         TeamServiceModel team = this.modelMapper.map(this.teamRepository.findById(id)
                 .orElseThrow(() -> new TeamNotFoundException("team not found")), TeamServiceModel.class);
@@ -142,6 +141,20 @@ public class TeamServiceImpl implements TeamService {
         user.setTeam(null);
         this.userService.save(user);
 
+    }
+
+    @Override
+    public boolean teamExists(String name) {
+        return this.teamRepository.findByName(name).isPresent();
+    }
+
+    @Override
+    public void saveTeam(TeamServiceModel teamServiceModel, String name) {
+        TeamEntity teamEntity = this.modelMapper.map(teamServiceModel, TeamEntity.class);
+        teamEntity.setCreator(this.modelMapper.map(this.userService.findByUsername(name), UserEntity.class));
+        teamEntity.setCreated(LocalDate.now());
+
+        this.teamRepository.save(teamEntity);
     }
 
 

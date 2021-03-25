@@ -1,14 +1,17 @@
 package com.softuni.web;
 
+import com.softuni.model.binding.TeamCreateBindingModel;
+import com.softuni.model.service.TeamServiceModel;
 import com.softuni.service.TeamService;
 import com.softuni.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -17,17 +20,46 @@ public class TeamController {
 
     private final TeamService teamService;
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public TeamController(TeamService teamService, UserService userService) {
+    public TeamController(TeamService teamService, UserService userService, ModelMapper modelMapper) {
         this.teamService = teamService;
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
+
+    @ModelAttribute("teamCreateBindingModel")
+    public TeamCreateBindingModel teamCreateBindingModel() {return new TeamCreateBindingModel();}
+
+    @ModelAttribute("teamExists")
+    public Boolean teamExists() {return false;}
 
 
     @GetMapping("/create")
-    public String createTeam(){
+    public String create(){
 
         return "team-create";
+    }
+
+    @PostMapping("/create")
+    public String createConfirm(@Valid TeamCreateBindingModel teamCreateBindingModel,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal){
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.teamCreateBindingModel", bindingResult);
+            return "redirect:create";
+        }
+        System.out.println();
+
+        if (this.teamService.teamExists(teamCreateBindingModel.getName())) {
+            redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);
+            redirectAttributes.addFlashAttribute("teamExists", true);
+            return "redirect:create";
+        }
+
+        this.teamService.saveTeam(this.modelMapper.map(teamCreateBindingModel, TeamServiceModel.class), principal.getName());
+
+        return "redirect:/";
     }
 
     @GetMapping("")
