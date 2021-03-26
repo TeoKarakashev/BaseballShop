@@ -1,6 +1,7 @@
 package com.softuni.service;
 
 import com.softuni.model.entity.GloveEntity;
+import com.softuni.model.service.GloveServiceModel;
 import com.softuni.model.view.GloveViewModel;
 
 import javax.xml.bind.JAXBException;
@@ -20,4 +21,8 @@ public interface GloveService {
     List<GloveViewModel> findByBrand(String brandName);
 
     void buy(String id, String name);
+
+    boolean gloveExists(String name);
+
+    void save(GloveServiceModel map);
 }

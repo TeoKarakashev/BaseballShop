@@ -6,6 +6,7 @@ import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.GloveEntity;
 import com.softuni.model.entity.UserEntity;
+import com.softuni.model.service.GloveServiceModel;
 import com.softuni.model.service.ImportGloveRootService;
 import com.softuni.model.service.ImportGloveService;
 import com.softuni.model.view.GloveViewModel;
@@ -98,4 +99,18 @@ public class GloveServiceImpl implements GloveService {
 
     }
 
+    @Override
+    public boolean gloveExists(String name) {
+        return this.gloveRepository.findByName(name).isPresent();
+    }
+
+    @Override
+    public void save(GloveServiceModel gloveServiceModel) {
+        GloveEntity gloveEntity = this.modelMapper.map(gloveServiceModel, GloveEntity.class);
+        gloveEntity.setQuantity(10);
+        gloveEntity.setBrand(this.brandRepository.findByName(gloveServiceModel.getBrand())
+                .orElseThrow(() -> new BrandNotFoundException("Brand not found")));
+        this.gloveRepository.save(gloveEntity);
+
+    }
 }

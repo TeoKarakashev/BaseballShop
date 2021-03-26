@@ -1,58 +1,33 @@
-package com.softuni.model.entity;
+package com.softuni.model.binding;
 
 import com.softuni.model.entity.enums.GloveMaterial;
 
-import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "gloves")
-public class GloveEntity extends BaseEntity {
+public class GloveCreateBindingModel {
 
-    @Column(nullable = false, unique = true)
+    @Size(min = 1, message = "Name is required")
     private String name;
-    @Column(name = "image_url", nullable = false, columnDefinition = "BLOB")
+    @NotEmpty(message = "Image must be chosen")
     private String imageUrl;
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Material must be chosen")
     private GloveMaterial material;
-    @Column(columnDefinition = "text")
+    @Size(min = 5, message = "Description must be at least 5 characters long")
     private String description;
-    @Column(nullable = false)
+    @Min(value = 0, message = "Size must be positive")
     private Double size;
-    @Column(nullable = false)
-    private int quantity;
-    @Column(nullable = false)
+    @Min(value = 0, message = "Price must be positive")
     private BigDecimal price;
-    @ManyToOne
-    private BrandEntity brand;
+    @NotNull(message = "Brand must be chosen")
+    private String brand;
 
-
-    public GloveEntity() {
+    public GloveCreateBindingModel() {
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getSize() {
-        return size;
-    }
-
-    public void setSize(Double size) {
-        this.size = size;
-    }
-
-    public BrandEntity getBrand() {
-        return brand;
-    }
-
-    public void setBrand(BrandEntity brand) {
-        this.brand = brand;
-    }
 
     public String getName() {
         return name;
@@ -61,7 +36,6 @@ public class GloveEntity extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public String getImageUrl() {
         return imageUrl;
@@ -87,11 +61,27 @@ public class GloveEntity extends BaseEntity {
         this.description = description;
     }
 
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -52,5 +54,10 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public BrandServiceModel findByName(String brand) {
        return this.modelMapper.map(this.brandRepository.findByName(brand).orElseThrow(() -> new BrandNotFoundException("Brand Not Found")), BrandServiceModel.class);
+    }
+
+    @Override
+    public List<BrandServiceModel> findAllBrands() {
+        return this.brandRepository.findAll().stream().map(brandEntity -> this.modelMapper.map(brandEntity, BrandServiceModel.class)).collect(Collectors.toList());
     }
 }

@@ -49,7 +49,7 @@ public class TeamController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.teamCreateBindingModel", bindingResult);
             return "redirect:create";
         }
-        System.out.println();
+
 
         if (this.teamService.teamExists(teamCreateBindingModel.getName())) {
             redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);

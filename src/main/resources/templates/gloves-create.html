@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/head"></div>
+</head>
+<body>
+
+<th:block th:include="~{fragments/navigation}"></th:block>
+<main>
+
+    <div class="container-fluid text-white">
+        <div class="container-fluid"></div>
+        <h1 class="text-center mt-2"> Create Glove</h1>
+
+        <hr class="hr-3 w-25 bg-white"/>
+        <form class="mx-auto w-25 bg-blur"
+              th:object="${gloveCreateBindingModel}"
+              method="POST"
+              th:action="@{/gloves/add}">
+            <div th:if="${gloveExists}"  class="form-text bg-danger rounded text-center alert" role="alert">
+                Team name is already occupied
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="brand" class="h4 mb-2">Brand</label>
+                </div>
+                <select th:field="*{brand}" th:errorclass="bg-danger" name="brand" id="brand" class="custom-select">
+
+                    <option th:each="b : ${brands}"
+                    th:value="${b.name}"
+                    th:text="${b.name}"></option>
+                </select>
+                <small th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" id="brandError" class="form-text bg-danger rounded">You must select Brand</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="name" class="h4 mb-2">Name</label>
+                </div>
+                <input  th:field="*{name}" th:errorclass="bg-danger" class="form-control" id="name" name="name"/>
+                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text bg-danger rounded">Name error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="size" class="h4 mb-2">Size</label>
+                </div>
+                <input th:field="*{size}" th:errorclass="bg-danger"  type="number" class="form-control" id="size" name="size"/>
+
+                <small th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="form-text bg-danger rounded">Size error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="price" class="h4 mb-2">Price</label>
+                </div>
+                <input th:field="*{price}" th:errorclass="bg-danger" type="number" class="form-control" id="price" name="price"/>
+
+                <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text bg-danger rounded">Price error message</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="imageUrl" class="h4 mb-2">Image</label>
+                </div>
+                <input th:field="*{imageUrl}" th:errorclass="bg-danger" type="file" class="form-control" id="imageUrl" name="imageUrl"/>
+
+                <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="form-text bg-danger rounded">Image error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="material" class="h4 mb-2">Material</label>
+                </div>
+                <select th:field="*{material}" th:errorclass="bg-danger" name="material" id="material" class="custom-select">
+                    <option th:each="m : ${T (com.softuni.model.entity.enums.GloveMaterial).values()}"
+                            th:value="${m}"
+                            th:text="${m}">
+                    </option>
+                </select>
+                <small th:if="${#fields.hasErrors('material')}" th:errors="*{material}" id="genreError" class="form-text bg-danger rounded">You must select material</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="description" class="h4 mb-2">Description</label>
+                </div>
+                <input th:field="*{description}" th:errorclass="bg-danger" type="text" class="form-control" id="description" name="description"/>
+
+                <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text bg-danger rounded">Description error message</small>
+            </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <div class="col col-md-4 ">
+                    <div class="button-holder d-flex">
+                        <input type="submit" class="btn btn-info btn-lg" value="Create"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<div th:include="fragments/footer"></div>
+
+</body>
+</html>

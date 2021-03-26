@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "bats")
 public class BatEntity extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @Enumerated(EnumType.STRING)
     private BatMaterial material;

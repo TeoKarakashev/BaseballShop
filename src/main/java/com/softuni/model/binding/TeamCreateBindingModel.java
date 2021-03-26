@@ -1,7 +1,7 @@
 package com.softuni.model.binding;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class TeamCreateBindingModel {
@@ -10,7 +10,7 @@ public class TeamCreateBindingModel {
     private String name;
     @Size(min = 5, message = "Description must be at least 5 characters long")
     private String description;
-    @NotNull(message = "Image must be chosen")
+    @NotEmpty(message = "Image must be chosen")
     private String imageUrl;
     @Size(min = 3, message = "Address must be at least 3 characters long")
     private String address;

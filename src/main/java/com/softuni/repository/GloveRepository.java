@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GloveRepository extends JpaRepository<GloveEntity, String> {
@@ -15,4 +16,6 @@ public interface GloveRepository extends JpaRepository<GloveEntity, String> {
     List<GloveEntity> getALlGloves();
 
     List<GloveEntity> findByBrand(BrandEntity brand);
+
+    Optional<GloveEntity> findByName(String name);
 }
