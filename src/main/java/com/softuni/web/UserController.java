@@ -46,6 +46,11 @@ public class UserController {
         return false;
     }
 
+    @ModelAttribute("emailExists")
+    public boolean emailExists() {
+        return false;
+    }
+
 
 
 
@@ -65,20 +70,24 @@ public class UserController {
             return "redirect:register";
         }
 
-        //TODO field match validator MusicDB
+
         if(!userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())){
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("passDontMatch", true);
             return "redirect:register";
         }
 
-        if (userService.userExists(userRegisterBindingModel.getUsername())) {
+        if (this.userService.userExists(userRegisterBindingModel.getUsername())) {
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("userExists", true);
             return "redirect:register";
         }
 
-        //TODO check if email already exists
+        if(this.userService.emailExists(userRegisterBindingModel.getEmail())){
+            redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("emailExists", true);
+            return "redirect:register";
+        }
 
         this.userService.registerAndLoginUser(this.modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class));
 

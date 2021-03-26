@@ -17,6 +17,9 @@
             <div th:if="${userExists}" class="form-text text-center bg-danger rounded text-center text-white alert" role="alert">
                 Username is already occupied
             </div>
+            <div th:if="${emailExists}" class="form-text text-center bg-danger rounded text-center text-white alert" role="alert">
+                There is an account with this email
+            </div>
             <div class="row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="firstName" class="text-white font-weight-bold">First Name</label>
@@ -50,26 +53,6 @@
                            placeholder="Email"/>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-white text-center bg-danger rounded">
                         Email is required.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="form-group col-md-6 mb-3">
-                    <label for="description" class="text-white font-weight-bold">Description</label>
-                    <input th:field="*{description}" th:errorclass="bg-danger" required minlength="5" id="description" type="text" min="5"  class="form-control"
-                           placeholder="Description"/>
-                    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text text-white text-center bg-danger rounded">
-                        Description is required.
-                    </p>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label for="age" class="text-white font-weight-bold">Age</label>
-                    <input th:field="*{age}" th:errorclass="bg-danger" required min="16" id="age" type="number" class="form-control"
-                           placeholder="Age"/>
-                    <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="form-text text-white text-center bg-danger rounded">
-                        Age is required.
                     </p>
                 </div>
             </div>

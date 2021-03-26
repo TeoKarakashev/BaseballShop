@@ -6,6 +6,7 @@ import com.softuni.model.service.UserServiceModel;
 import java.util.List;
 
 public interface UserService {
+
     void registerAndLoginUser(UserRegisterServiceModel userRegisterServiceModel);
 
     boolean userExists(String username);
@@ -19,4 +20,6 @@ public interface UserService {
     void promoteUserToAdmin(String username);
 
     void save(UserServiceModel userEntity);
+
+    boolean emailExists(String email);
 }

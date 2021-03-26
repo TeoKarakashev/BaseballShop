@@ -18,17 +18,12 @@ body {
     background: none;
     border: none;
     float: right;
+
+}
+btnLogout:focus {
+    outline: none;
 }
 
-
-
-fuckingList {
-. float: right;
-}
-
-.btnLogout:visited {
-    border: none;
-}
 
 .similarBtn:link, .similarBtn:visited{
     background-color: #17a2b8;

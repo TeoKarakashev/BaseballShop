@@ -15,8 +15,6 @@ public class UserServiceModel {
     private String username;
     private String email;
     private String password;
-    private int age;
-    private String description;
     private Set<RoleEntity> roles;
     private BatEntity bat;
     private GloveEntity glove;
@@ -71,22 +69,6 @@ public class UserServiceModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Set<RoleEntity> getRoles() {

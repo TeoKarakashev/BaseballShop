@@ -1,17 +1,11 @@
 package com.softuni.model.service;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 public class UserRegisterServiceModel {
 
     private String firstName;
     private String lastName;
     private String username;
     private String email;
-    private String description;
-    private int age;
     private String password;
 
     public UserRegisterServiceModel() {
@@ -50,21 +44,6 @@ public class UserRegisterServiceModel {
         this.email = email;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getPassword() {
         return password;

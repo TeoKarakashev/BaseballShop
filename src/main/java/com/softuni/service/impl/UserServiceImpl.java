@@ -74,14 +74,11 @@ public class UserServiceImpl implements UserService {
             RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);
             RoleEntity useRole = this.roleService.getRoleByName(UserRole.USER);
 
-
             UserEntity admin = new UserEntity();
             admin.setUsername("admin");
             admin.setFirstName("Admin");
             admin.setLastName("Adminov");
             admin.setEmail("admin@mail.com");
-            admin.setAge(25);
-            admin.setDescription("This is an admin account");
             admin.setRoles(Set.of(adminRole, useRole));
             admin.setPassword(passwordEncoder.encode("123"));
             this.userRepository.save(admin);
@@ -111,6 +108,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserServiceModel user) {
         this.userRepository.save(this.modelMapper.map(user, UserEntity.class));
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return this.userRepository.findByEmail(email).isPresent();
     }
 
     @Override

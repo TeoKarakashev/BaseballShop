@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface GloveService {
-    
-    
+
     List<GloveViewModel> findAllGloves();
 
     void initGloves() throws JAXBException;

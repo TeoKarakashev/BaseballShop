@@ -16,12 +16,8 @@ public class UserEntity extends BaseEntity{
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private int age;
     @Column(name = "image_url")
     private String imageUrl;
-    @Column(columnDefinition = "text")
-    private String description;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
     @ManyToOne
@@ -83,21 +79,6 @@ public class UserEntity extends BaseEntity{
         this.password = password;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public Set<RoleEntity> getRoles() {
         return roles;
