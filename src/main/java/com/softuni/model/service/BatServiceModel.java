@@ -1,6 +1,7 @@
 package com.softuni.model.service;
 
 import com.softuni.model.entity.enums.BatMaterial;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -8,7 +9,7 @@ public class BatServiceModel {
 
 
     private String name;
-    private String imageUrl;
+    private MultipartFile imageUrl;
     private BatMaterial material;
     private String description;
     private int weight;
@@ -27,14 +28,13 @@ public class BatServiceModel {
         this.name = name;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
     }
-
 
     public String getDescription() {
         return description;

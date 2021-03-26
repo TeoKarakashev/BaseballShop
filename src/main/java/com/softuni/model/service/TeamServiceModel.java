@@ -1,6 +1,7 @@
 package com.softuni.model.service;
 
 import com.softuni.model.entity.UserEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,21 +10,13 @@ import java.util.List;
 public class TeamServiceModel {
 
     private String id;
-
     private String name;
-
     private LocalDate created;
-
     private String description;
-
-    private String imageUrl;
-
+    private MultipartFile imageUrl;
     private String address;
-
     private int capacity;
-
     private UserEntity creator;
-
     private List<UserEntity> players = new ArrayList<>();
 
     public String getId() {
@@ -58,11 +51,11 @@ public class TeamServiceModel {
         this.description = description;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
     }
 

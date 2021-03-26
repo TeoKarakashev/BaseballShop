@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -112,7 +113,7 @@ public class GloveController {
 
     @PostMapping("/add")
     public String createConfirm(@Valid GloveCreateBindingModel gloveCreateBindingModel,
-                                BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("gloveCreateBindingModel", gloveCreateBindingModel);

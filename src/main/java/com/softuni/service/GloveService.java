@@ -5,6 +5,7 @@ import com.softuni.model.service.GloveServiceModel;
 import com.softuni.model.view.GloveViewModel;
 
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.List;
 
 public interface GloveService {
@@ -24,5 +25,5 @@ public interface GloveService {
 
     boolean gloveExists(String name);
 
-    void save(GloveServiceModel map);
+    void save(GloveServiceModel map) throws IOException;
 }

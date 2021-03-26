@@ -3,6 +3,7 @@ package com.softuni.service;
 import com.softuni.model.service.BatServiceModel;
 import com.softuni.model.view.BatViewModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface BatService {
@@ -20,5 +21,5 @@ public interface BatService {
 
     boolean batExists(String name);
 
-    void save(BatServiceModel map);
+    void save(BatServiceModel map) throws IOException;
 }

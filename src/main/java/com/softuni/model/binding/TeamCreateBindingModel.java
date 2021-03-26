@@ -1,7 +1,9 @@
 package com.softuni.model.binding;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class TeamCreateBindingModel {
@@ -10,8 +12,8 @@ public class TeamCreateBindingModel {
     private String name;
     @Size(min = 5, message = "Description must be at least 5 characters long")
     private String description;
-    @NotEmpty(message = "Image must be chosen")
-    private String imageUrl;
+    @NotNull(message = "Image must be chosen")
+    private MultipartFile imageUrl;
     @Size(min = 3, message = "Address must be at least 3 characters long")
     private String address;
     @Min(value = 0, message = "Capacity must be positive")
@@ -36,11 +38,11 @@ public class TeamCreateBindingModel {
         this.description = description;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
     }
 

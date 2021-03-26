@@ -1,6 +1,7 @@
 package com.softuni.model.service;
 
 import com.softuni.model.entity.enums.GloveMaterial;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -9,7 +10,7 @@ public class GloveServiceModel {
 
     private String name;
 
-    private String imageUrl;
+    private MultipartFile imageUrl;
 
     private GloveMaterial material;
 
@@ -32,11 +33,11 @@ public class GloveServiceModel {
         this.name = name;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
     }
 

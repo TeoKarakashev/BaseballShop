@@ -16,8 +16,8 @@
         <form class="mx-auto w-25 bg-blur"
               th:object="${teamCreateBindingModel}"
               method="POST"
-              th:action="@{/teams/create}">
-            <div th:if="${teamExists}" class="form-text bg-danger rounded text-white text-center alert" role="alert">
+              th:action="@{/teams/create}" enctype="multipart/form-data">
+            <div th:if="${teamExists}" class="form-text bg-danger rounded text-white text-center alert" role="alert" >
                 Team name is already occupied
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="imageUrl" class="h4 mb-2">Image</label>
                 </div>
-                <input required th:field="*{imageUrl}" th:errorclass="bg-danger" type="file" class="form-control" id="imageUrl" name="imageUrl"/>
+                <input required="required" th:field="*{imageUrl}" th:errorclass="bg-danger" type="file"  class="form-control" id="imageUrl" name="imageUrl"/>
 
                 <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="form-text bg-danger rounded">Image error message</small>
             </div>
@@ -57,7 +57,7 @@
                 </div>
                 <input required min="1" th:field="*{capacity}" th:errorclass="bg-danger" type="number" class="form-control" id="capacity" name="capacity"/>
 
-                <small  th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"class="form-text bg-danger rounded">Capacity error message</small>
+                <small  th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}" class="form-text bg-danger rounded">Capacity error message</small>
             </div>
 
 

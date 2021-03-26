@@ -3,6 +3,7 @@ package com.softuni.service;
 import com.softuni.model.service.TeamServiceModel;
 import com.softuni.model.view.TeamViewModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface TeamService {
@@ -29,5 +30,5 @@ public interface TeamService {
 
     boolean teamExists(String name);
 
-    void saveTeam(TeamServiceModel map, String name);
+    void saveTeam(TeamServiceModel map, String name) throws IOException;
 }

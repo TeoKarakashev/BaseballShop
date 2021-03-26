@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -42,21 +43,20 @@ public class TeamController {
     }
 
     @PostMapping("/create")
-    public String createConfirm(@Valid TeamCreateBindingModel teamCreateBindingModel,
-                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal){
+    public String createConfirm(@Valid @ModelAttribute("teamCreateBindingModel")TeamCreateBindingModel teamCreateBindingModel,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) throws IOException {
+        System.out.println();
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.teamCreateBindingModel", bindingResult);
             return "redirect:create";
         }
 
-
         if (this.teamService.teamExists(teamCreateBindingModel.getName())) {
             redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);
             redirectAttributes.addFlashAttribute("teamExists", true);
             return "redirect:create";
         }
-
         this.teamService.saveTeam(this.modelMapper.map(teamCreateBindingModel, TeamServiceModel.class), principal.getName());
 
         return "redirect:/";

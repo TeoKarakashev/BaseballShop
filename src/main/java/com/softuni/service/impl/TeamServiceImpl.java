@@ -7,12 +7,13 @@ import com.softuni.model.service.TeamServiceModel;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.model.view.TeamViewModel;
 import com.softuni.repository.TeamRepository;
-import com.softuni.repository.UserRepository;
+import com.softuni.service.CloudinaryService;
 import com.softuni.service.TeamService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +25,13 @@ public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
     private final UserService userService;
     private final ModelMapper modelMapper;
-    private final UserRepository userRepository;
+    private final CloudinaryService cloudinaryService;
 
-    public TeamServiceImpl(TeamRepository teamRepository, UserService userService, ModelMapper modelMapper, UserRepository userRepository) {
+    public TeamServiceImpl(TeamRepository teamRepository, UserService userService, ModelMapper modelMapper, CloudinaryService cloudinaryService) {
         this.teamRepository = teamRepository;
         this.userService = userService;
         this.modelMapper = modelMapper;
-        this.userRepository = userRepository;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -149,9 +150,10 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void saveTeam(TeamServiceModel teamServiceModel, String name) {
+    public void saveTeam(TeamServiceModel teamServiceModel, String name) throws IOException {
         TeamEntity teamEntity = this.modelMapper.map(teamServiceModel, TeamEntity.class);
         teamEntity.setCreator(this.modelMapper.map(this.userService.findByUsername(name), UserEntity.class));
+        teamEntity.setImageUrl(this.cloudinaryService.uploadImage(teamServiceModel.getImageUrl()));
         teamEntity.setCreated(LocalDate.now());
 
         this.teamRepository.save(teamEntity);

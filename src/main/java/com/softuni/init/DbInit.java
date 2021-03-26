@@ -29,9 +29,9 @@ public class DbInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         this.roleService.initRoles();
         this.brandService.initBrands();
-        this.batService.initBats();
-        this.gloveService.initGloves();
+        // this.batService.initBats();
+        // this.gloveService.initGloves();
         this.userService.initAdminUser();
-        this.teamService.initTeams();
+        //  this.teamService.initTeams();
     }
 }

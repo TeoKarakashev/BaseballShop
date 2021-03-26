@@ -1,9 +1,9 @@
 package com.softuni.model.binding;
 
 import com.softuni.model.entity.enums.BatMaterial;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ public class BatCreateBindingModel {
 
     @Size(min = 1, message = "Name is required")
     private String name;
-    @NotEmpty(message = "Image must be chosen")
-    private String imageUrl;
+    @NotNull(message = "Image must be chosen")
+    private MultipartFile imageUrl;
     @NotNull(message = "Material must be chosen")
     private BatMaterial material;
     @Size(min = 5, message = "Description must be at least 5 characters long")
@@ -38,11 +38,11 @@ public class BatCreateBindingModel {
         this.name = name;
     }
 
-    public String getImageUrl() {
+    public MultipartFile getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
     }
 

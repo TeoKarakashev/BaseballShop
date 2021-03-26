@@ -14,6 +14,7 @@ import com.softuni.repository.BrandRepository;
 import com.softuni.repository.GloveRepository;
 import com.softuni.repository.UserRepository;
 import com.softuni.service.BrandService;
+import com.softuni.service.CloudinaryService;
 import com.softuni.service.GloveService;
 import com.softuni.util.XmlParser;
 import org.modelmapper.ModelMapper;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,15 +35,17 @@ public class GloveServiceImpl implements GloveService {
     private final XmlParser xmlParser;
     private final BrandService brandService;
     private final BrandRepository brandRepository;
+    private final CloudinaryService cloudinaryService;
     private final UserRepository userRepository;
 
     @Autowired
-    public GloveServiceImpl(GloveRepository gloveRepository, ModelMapper modelMapper, XmlParser xmlParser, BrandService brandService, BrandRepository brandRepository, UserRepository userRepository) {
+    public GloveServiceImpl(GloveRepository gloveRepository, ModelMapper modelMapper, XmlParser xmlParser, BrandService brandService, BrandRepository brandRepository, CloudinaryService cloudinaryService, UserRepository userRepository) {
         this.gloveRepository = gloveRepository;
         this.modelMapper = modelMapper;
         this.xmlParser = xmlParser;
         this.brandService = brandService;
         this.brandRepository = brandRepository;
+        this.cloudinaryService = cloudinaryService;
         this.userRepository = userRepository;
     }
 
@@ -105,11 +109,12 @@ public class GloveServiceImpl implements GloveService {
     }
 
     @Override
-    public void save(GloveServiceModel gloveServiceModel) {
+    public void save(GloveServiceModel gloveServiceModel) throws IOException {
         GloveEntity gloveEntity = this.modelMapper.map(gloveServiceModel, GloveEntity.class);
         gloveEntity.setQuantity(10);
         gloveEntity.setBrand(this.brandRepository.findByName(gloveServiceModel.getBrand())
                 .orElseThrow(() -> new BrandNotFoundException("Brand not found")));
+        gloveEntity.setImageUrl(this.cloudinaryService.uploadImage(gloveServiceModel.getImageUrl()));
         this.gloveRepository.save(gloveEntity);
 
     }

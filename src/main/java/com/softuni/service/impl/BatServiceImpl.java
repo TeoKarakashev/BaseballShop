@@ -13,9 +13,11 @@ import com.softuni.repository.BatRepository;
 import com.softuni.repository.BrandRepository;
 import com.softuni.repository.UserRepository;
 import com.softuni.service.BatService;
+import com.softuni.service.CloudinaryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,13 +29,14 @@ public class BatServiceImpl implements BatService {
     private final ModelMapper modelMapper;
     private final BrandRepository brandRepository;
     private final UserRepository userRepository;
+    private final CloudinaryService cloudinaryService;
 
-    public BatServiceImpl(BatRepository batRepository, ModelMapper modelMapper, BrandRepository brandRepository, UserRepository userRepository) {
+    public BatServiceImpl(BatRepository batRepository, ModelMapper modelMapper, BrandRepository brandRepository, UserRepository userRepository, CloudinaryService cloudinaryService) {
         this.batRepository = batRepository;
         this.modelMapper = modelMapper;
-
         this.brandRepository = brandRepository;
         this.userRepository = userRepository;
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -115,10 +118,10 @@ public class BatServiceImpl implements BatService {
     }
 
     @Override
-    public void save(BatServiceModel batServiceModel) {
+    public void save(BatServiceModel batServiceModel) throws IOException {
 
         BatEntity batEntity = this.modelMapper.map(batServiceModel, BatEntity.class);
-
+        batEntity.setImageUrl(this.cloudinaryService.uploadImage(batServiceModel.getImageUrl()));
         batEntity.setQuantity(10);
         batEntity.setBrand(this.brandRepository.findByName(batServiceModel.getBrand()).orElseThrow(() -> new BrandNotFoundException("no brand found")));
 
