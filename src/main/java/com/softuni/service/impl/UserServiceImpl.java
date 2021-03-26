@@ -106,12 +106,7 @@ public class UserServiceImpl implements UserService {
         return users.stream().map(UserServiceModel::getUsername).collect(Collectors.toList());
     }
 
-    @Override
-    public List<String> findAllUsernames(){
-        List<UserServiceModel> users = userRepository.findAll().stream()
-                .map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class)).collect(Collectors.toList());
-        return users.stream().map(UserServiceModel::getUsername).collect(Collectors.toList());
-    }
+
 
     @Override
     public void save(UserServiceModel user) {
@@ -127,10 +122,6 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(user);
     }
 
-    @Override
-    public List<UserEntity> findAll() {
-        return this.userRepository.findAll();
-    }
 
 
 

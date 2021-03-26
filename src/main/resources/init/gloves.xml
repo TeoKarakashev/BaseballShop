@@ -2,7 +2,9 @@
 <gloves>
     <glove>
         <name>A2000</name>
-        <image-url>https://cdn11.bigcommerce.com/s-9emg7q0vw3/images/stencil/1280x1280/products/13950/61759/wilson-a2000-2019-july-glove-of-the-month-1786-11-5-infield-baseball-glove-1__41795.1569706523.jpg?c=2</image-url>
+        <image-url>
+            https://res.cloudinary.com/b1gted0/image/upload/v1616782152/Screenshot_2021-03-26_200839_datuco.png
+        </image-url>
         <material>LEATHER</material>
         <size>11.75</size>
         <price>300.00</price>
@@ -15,7 +17,7 @@
     <glove>
         <name>Hearth of the hide</name>
         <image-url>
-            https://cdn.baseballexpress.com/media/catalog/product/cache/1ff9e0c768a0b8b3a19109048ff96b8f/p/r/pro20420cb_1.png
+            https://res.cloudinary.com/b1gted0/image/upload/v1616781303/dtmtlagrgetwbd5uujkn.jpg
         </image-url>
         <material>LEATHER</material>
         <size>11.50</size>
@@ -33,7 +35,7 @@
     <glove>
         <name>A500</name>
         <image-url>
-            https://cdn11.bigcommerce.com/s-34e8e/images/stencil/1280x1280/products/1366/1944/wilson-a500-18125-youth-baseball-glove-12-50-wta05rb18125-42__61543.1543347417.jpg?c=2
+            https://res.cloudinary.com/b1gted0/image/upload/v1616782346/Screenshot_2021-03-26_200122_cspqqn.png
         </image-url>
         <material>SYNTHETIC</material>
         <size>11.50</size>

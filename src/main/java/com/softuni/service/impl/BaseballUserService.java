@@ -2,6 +2,7 @@ package com.softuni.service.impl;
 
 import com.softuni.model.entity.UserEntity;
 import com.softuni.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,6 +19,7 @@ public class BaseballUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public BaseballUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

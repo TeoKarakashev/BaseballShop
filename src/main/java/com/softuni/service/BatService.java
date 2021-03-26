@@ -10,12 +10,9 @@ public interface BatService {
     
     List<BatViewModel> findAllBats();
 
-    void initBats();
-
     BatViewModel findById(String id);
 
     List<BatViewModel> findByBrand(String brandName);
-
 
     void buy(String id, String name);
 

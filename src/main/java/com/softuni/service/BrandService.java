@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BrandService {
+
     void initBrands() throws IOException;
 
-     String readAuthorsFileContent() throws IOException;
+    String readAuthorsFileContent() throws IOException;
 
     BrandServiceModel findByName(String brand);
 

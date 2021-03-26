@@ -11,27 +11,23 @@ public class DbInit implements CommandLineRunner {
     private final RoleService roleService;
     private final UserService userService;
     private final BrandService brandService;
-    private final BatService batService;
     private final GloveService gloveService;
-    private final TeamService teamService;
+
 
     @Autowired
     public DbInit(RoleService roleService, UserService userService, BrandService brandService, BatService batService, GloveService gloveService, TeamService teamService) {
         this.roleService = roleService;
         this.userService = userService;
         this.brandService = brandService;
-        this.batService = batService;
         this.gloveService = gloveService;
-        this.teamService = teamService;
+
     }
 
     @Override
     public void run(String... args) throws Exception {
         this.roleService.initRoles();
         this.brandService.initBrands();
-        // this.batService.initBats();
-        // this.gloveService.initGloves();
+         this.gloveService.initGloves();
         this.userService.initAdminUser();
-        //  this.teamService.initTeams();
     }
 }

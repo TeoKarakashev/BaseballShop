@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface TeamService {
-    
-    void initTeams();
 
     List<TeamViewModel> findAllTeams();
 
