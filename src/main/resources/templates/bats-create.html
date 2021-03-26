@@ -10,14 +10,14 @@
 
     <div class="container-fluid text-white">
         <div class="container-fluid"></div>
-        <h1 class="text-center mt-2"> Create Glove</h1>
+        <h1 class="text-center mt-2"> Create Bat</h1>
 
         <hr class="hr-3 w-25 bg-white"/>
         <form class="mx-auto w-25 bg-blur"
-              th:object="${gloveCreateBindingModel}"
+              th:object="${batCreateBindingModel}"
               method="POST"
-              th:action="@{/gloves/add}">
-            <div th:if="${gloveExists}"  class="form-text bg-danger rounded text-center alert" role="alert">
+              th:action="@{/bats/add}">
+            <div th:if="${batExists}"  class="form-text bg-danger rounded text-center alert" role="alert">
                  Name is already occupied
             </div>
             <div class="form-group">
@@ -27,8 +27,8 @@
                 <select th:field="*{brand}" th:errorclass="bg-danger" name="brand" id="brand" class="custom-select">
 
                     <option th:each="b : ${brands}"
-                    th:value="${b.name}"
-                    th:text="${b.name}"></option>
+                            th:value="${b.name}"
+                            th:text="${b.name}"></option>
                 </select>
                 <small th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" id="brandError" class="form-text bg-danger rounded">You must select Brand</small>
             </div>
@@ -46,6 +46,14 @@
                 <input th:field="*{size}" th:errorclass="bg-danger"  type="number" class="form-control" id="size" name="size"/>
 
                 <small th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="form-text bg-danger rounded">Size error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="weight" class="h4 mb-2">Weight</label>
+                </div>
+                <input th:field="*{weight}" th:errorclass="bg-danger"  type="number" class="form-control" id="weight" name="weight"/>
+
+                <small th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="form-text bg-danger rounded">Weight error message</small>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
@@ -69,7 +77,7 @@
                     <label for="material" class="h4 mb-2">Material</label>
                 </div>
                 <select th:field="*{material}" th:errorclass="bg-danger" name="material" id="material" class="custom-select">
-                    <option th:each="m : ${T (com.softuni.model.entity.enums.GloveMaterial).values()}"
+                    <option th:each="m : ${T (com.softuni.model.entity.enums.BatMaterial).values()}"
                             th:value="${m}"
                             th:text="${m}">
                     </option>

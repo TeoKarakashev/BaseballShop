@@ -7,6 +7,7 @@ import com.softuni.model.entity.BatEntity;
 import com.softuni.model.entity.BrandEntity;
 import com.softuni.model.entity.UserEntity;
 import com.softuni.model.entity.enums.BatMaterial;
+import com.softuni.model.service.BatServiceModel;
 import com.softuni.model.view.BatViewModel;
 import com.softuni.repository.BatRepository;
 import com.softuni.repository.BrandRepository;
@@ -108,5 +109,20 @@ public class BatServiceImpl implements BatService {
 
     }
 
+    @Override
+    public boolean batExists(String name) {
+        return this.batRepository.findByName(name).isPresent();
+    }
+
+    @Override
+    public void save(BatServiceModel batServiceModel) {
+
+        BatEntity batEntity = this.modelMapper.map(batServiceModel, BatEntity.class);
+
+        batEntity.setQuantity(10);
+        batEntity.setBrand(this.brandRepository.findByName(batServiceModel.getBrand()).orElseThrow(() -> new BrandNotFoundException("no brand found")));
+
+        this.batRepository.save(batEntity);
+    }
 
 }
