@@ -53,7 +53,7 @@ public class GloveController {
     public ModelAndView details(ModelAndView modelAndView, @PathVariable String id) {
         GloveViewModel glove = this.gloveService.findById(id);
         modelAndView.addObject("glove", glove);
-        modelAndView.setViewName("gloves-details");
+        modelAndView.setViewName("/gloves/gloves-details");
 
         return modelAndView;
     }
@@ -63,7 +63,7 @@ public class GloveController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView viewAll(ModelAndView modelAndView) {
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
-        modelAndView.setViewName("gloves-all");
+        modelAndView.setViewName("/gloves/gloves-all");
 
         return modelAndView;
     }
@@ -75,7 +75,7 @@ public class GloveController {
                 this.gloveService.findByBrand("Rawlings"));
 
 
-        modelAndView.setViewName("gloves-all");
+        modelAndView.setViewName("/gloves/gloves-all");
         return modelAndView;
     }
 
@@ -85,7 +85,7 @@ public class GloveController {
 
         modelAndView.addObject("gloves",
                 this.gloveService.findByBrand("Wilson"));
-        modelAndView.setViewName("gloves-all");
+        modelAndView.setViewName("/gloves/gloves-all");
         return modelAndView;
     }
 
@@ -96,22 +96,25 @@ public class GloveController {
                 this.gloveService.findByBrand("E7"));
 
 
-        modelAndView.setViewName("gloves-all");
+        modelAndView.setViewName("/gloves/gloves-all");
         return modelAndView;
     }
 
     @PostMapping("/buy/{id}")
+    @PreAuthorize("isAuthenticated()")
     public String buy(@PathVariable String id, Principal principal) {
         this.gloveService.buy(id, principal.getName());
         return "redirect:/";
     }
 
     @GetMapping("/add")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String create() {
-        return "gloves-create";
+        return "/gloves/gloves-create";
     }
 
     @PostMapping("/add")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String createConfirm(@Valid GloveCreateBindingModel gloveCreateBindingModel,
                                 BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 

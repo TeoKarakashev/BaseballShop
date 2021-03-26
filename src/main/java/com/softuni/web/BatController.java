@@ -55,7 +55,7 @@ public class BatController {
     public ModelAndView details(@PathVariable String id, ModelAndView modelAndView) {
         BatViewModel batViewModel = this.batService.findById(id);
         modelAndView.addObject("bat", batViewModel);
-        modelAndView.setViewName("bats-details");
+        modelAndView.setViewName("/bats/bats-details");
         return modelAndView;
     }
 
@@ -63,7 +63,7 @@ public class BatController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView viewAll(ModelAndView modelAndView) {
         modelAndView.addObject("bats", this.batService.findAllBats());
-        modelAndView.setViewName("bats-all");
+        modelAndView.setViewName("/bats/bats-all");
 
         return modelAndView;
     }
@@ -75,7 +75,7 @@ public class BatController {
                 this.batService.findByBrand("Rawlings"));
 
 
-        modelAndView.setViewName("bats-all");
+        modelAndView.setViewName("/bats/bats-all");
         return modelAndView;
     }
 
@@ -85,7 +85,7 @@ public class BatController {
 
         modelAndView.addObject("bats",
                 this.batService.findByBrand("Wilson"));
-        modelAndView.setViewName("bats-all");
+        modelAndView.setViewName("/bats/bats-all");
         return modelAndView;
     }
 
@@ -96,22 +96,25 @@ public class BatController {
                 this.batService.findByBrand("E7"));
 
 
-        modelAndView.setViewName("bats-all");
+        modelAndView.setViewName("/bats/bats-all");
         return modelAndView;
     }
 
     @PostMapping("/buy/{id}")
+    @PreAuthorize("isAuthenticated()")
     public String buy(@PathVariable String id, Principal principal) {
         this.batService.buy(id, principal.getName());
         return "redirect:/";
     }
 
     @GetMapping("/add")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String create() {
-        return "bats-create";
+        return "/bats/bats-create";
     }
 
     @PostMapping("/add")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String createConfirm(@Valid BatCreateBindingModel batCreateBindingModel,
                                 BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 

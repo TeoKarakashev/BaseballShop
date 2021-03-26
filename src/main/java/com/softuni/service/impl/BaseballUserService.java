@@ -39,12 +39,10 @@ public class BaseballUserService implements UserDetailsService {
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
                 .collect(Collectors.toList());
 
-        UserDetails result = new User(
+        return new User(
                 userEntity.getUsername(),
                 userEntity.getPassword(),
                 authorities
         );
-
-        return result;
     }
 }

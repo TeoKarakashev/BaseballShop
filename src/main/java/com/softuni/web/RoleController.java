@@ -22,16 +22,17 @@ public class RoleController {
 
     @GetMapping("/add")
     @PageTitle("Roles Manager")
-    @PreAuthorize(value = "hasAuthority('ADMIN')")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ModelAndView add(ModelAndView modelAndView) {
 
         modelAndView.addObject("usernames", this.userService.findAllUsers());
-        modelAndView.setViewName("admin-panel");
+        modelAndView.setViewName("/users/admin-panel");
 
         return modelAndView;
     }
 
     @PostMapping("/add")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String addConfirm(@RequestParam String username){
         this.userService.promoteUserToAdmin(username);
         return "redirect:/";

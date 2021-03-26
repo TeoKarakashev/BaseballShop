@@ -5,6 +5,7 @@ import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.view.UserViewModel;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -50,7 +51,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String register(){
-        return "register";
+        return "/users/register";
     }
 
 
@@ -86,11 +87,12 @@ public class UserController {
 
 
     @GetMapping("/profile")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView profile(ModelAndView modelAndView, Principal principal){
 
         UserViewModel user = this.modelMapper.map(this.userService.findByUsername(principal.getName()), UserViewModel.class);
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("profile");
+        modelAndView.setViewName("/users/profile");
 
         return modelAndView;
     }
@@ -98,7 +100,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "/users/login";
     }
 
 
@@ -115,7 +117,7 @@ public class UserController {
 
 
 
-        modelAndView.setViewName("redirect:/users/login");
+        modelAndView.setViewName("redirect:login");
 
         return modelAndView;
     }

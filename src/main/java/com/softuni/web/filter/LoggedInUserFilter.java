@@ -1,7 +1,7 @@
 package com.softuni.web.filter;
 
 import com.softuni.service.AuthenticatedUserService;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -14,6 +14,7 @@ import java.io.IOException;
 public class LoggedInUserFilter implements Filter {
     private final AuthenticatedUserService authenticatedUserService;
 
+    @Autowired
     public LoggedInUserFilter(AuthenticatedUserService authenticatedUserService){
 
         this.authenticatedUserService = authenticatedUserService;

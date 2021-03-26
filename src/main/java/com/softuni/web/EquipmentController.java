@@ -2,6 +2,7 @@ package com.softuni.web;
 
 import com.softuni.service.BatService;
 import com.softuni.service.GloveService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,15 +21,16 @@ public class EquipmentController {
     }
 
     @GetMapping("")
+    @PreAuthorize("isAuthenticated()")
     public ModelAndView all(ModelAndView modelAndView){
 
-        //TODO cloudinary, schedule, AOP, RestController?
-        //TODO  Think of something on the home page, Add team,add bat,add glove, add picture from profile
+        //TODO schedule, AOP, RestController?
+        //TODO Think of something on the home page, add picture from profile
 
 
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
         modelAndView.addObject("bats", this.batService.findAllBats());
-        modelAndView.setViewName("equipment");
+        modelAndView.setViewName("/equipment/equipment");
 
         return modelAndView;
     }
