@@ -69,14 +69,13 @@
                             </form>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
-                            <img src="/images/user-picture.jpg" alt="Profile Image" class="img-fluid mx-auto d-block">
-                            <div class="row">
-                                <div class="col col-md-3">
-                                    <div class="button-holder d-flex">
-                                        <input type="submit" class="btn btn-info btn-lg" value="Change picture"/>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <img th:if="${user.imageUrl == null}" src="/images/user-picture.jpg" alt="Profile Image" class="img-fluid mx-auto d-block">
+                            <img th:if="${user.imageUrl != null}" th:src="${user.imageUrl}" width="150" height="150" alt="Profile Image" class="img-fluid mx-auto d-block">
+                            <form th:action="@{/users/updateProfilePicture}" th:method="post" enctype="multipart/form-data">
+                                <input type="file" id="imageUrl" name="imageUrl">
+                                <input type="submit" class="btn btn-info btn-lg" value="Change picture"/>
+                            </form>
                         </div>
                     </div>
                 </div>

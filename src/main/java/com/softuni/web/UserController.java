@@ -1,6 +1,8 @@
 package com.softuni.web;
 
+import com.softuni.model.binding.UpdatePictureBindingModel;
 import com.softuni.model.binding.UserRegisterBindingModel;
+import com.softuni.model.service.UpdatePictureServiceModel;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.view.UserViewModel;
 import com.softuni.service.UserService;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -131,6 +134,11 @@ public class UserController {
         return modelAndView;
     }
 
-
+    @PostMapping("/updateProfilePicture")
+    @PreAuthorize("isAuthenticated()")
+    public String updatePicture(@ModelAttribute UpdatePictureBindingModel pictureBindingModel, Principal principal) throws IOException {
+        this.userService.changePicture(this.modelMapper.map(pictureBindingModel, UpdatePictureServiceModel.class), principal.getName());
+        return "redirect:profile";
+    }
 
 }

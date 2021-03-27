@@ -12,6 +12,7 @@ public class UserViewModel {
     private String email;
     private BatEntity bat;
     private GloveEntity glove;
+    private String imageUrl;
 
     public UserViewModel() {
     }
@@ -62,5 +63,13 @@ public class UserViewModel {
 
     public void setGlove(GloveEntity glove) {
         this.glove = glove;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

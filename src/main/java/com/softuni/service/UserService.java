@@ -1,8 +1,10 @@
 package com.softuni.service;
 
+import com.softuni.model.service.UpdatePictureServiceModel;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.service.UserServiceModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -22,4 +24,6 @@ public interface UserService {
     void save(UserServiceModel userEntity);
 
     boolean emailExists(String email);
+
+    void changePicture(UpdatePictureServiceModel picture, String name) throws IOException;
 }

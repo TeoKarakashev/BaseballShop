@@ -19,6 +19,7 @@ public class UserServiceModel {
     private BatEntity bat;
     private GloveEntity glove;
     private TeamEntity team;
+    private String imageUrl;
 
     public UserServiceModel() {
     }
@@ -29,6 +30,14 @@ public class UserServiceModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getFirstName() {

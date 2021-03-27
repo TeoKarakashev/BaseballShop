@@ -4,9 +4,11 @@ import com.softuni.error.UserNotFoundException;
 import com.softuni.model.entity.RoleEntity;
 import com.softuni.model.entity.UserEntity;
 import com.softuni.model.entity.enums.UserRole;
+import com.softuni.model.service.UpdatePictureServiceModel;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.service.UserServiceModel;
 import com.softuni.repository.UserRepository;
+import com.softuni.service.CloudinaryService;
 import com.softuni.service.RoleService;
 import com.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -18,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,17 +33,18 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final BaseballUserService baseballUserService;
+    private final CloudinaryService cloudinaryService;
 
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BaseballUserService baseballUserService) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BaseballUserService baseballUserService, CloudinaryService cloudinaryService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.baseballUserService = baseballUserService;
-
+        this.cloudinaryService = cloudinaryService;
     }
 
     @Override
@@ -95,7 +99,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<String> findAllUsers() {
-        RoleEntity admin = this.roleService.getRoleByName(UserRole.ADMIN);
         List<UserServiceModel> users = userRepository.findAll().stream()
                 .map(userEntity -> this.modelMapper.map(userEntity, UserServiceModel.class)).collect(Collectors.toList());
         users.removeIf(user -> user.getRoles().size() == 2);
@@ -113,6 +116,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean emailExists(String email) {
         return this.userRepository.findByEmail(email).isPresent();
+    }
+
+    @Override
+    public void changePicture(UpdatePictureServiceModel picture, String name) throws IOException {
+        UserEntity userEntity = this.userRepository.findByUsername(name).orElseThrow(() -> new UserNotFoundException("user not found"));
+        userEntity.setImageUrl(this.cloudinaryService.uploadImage(picture.getImageUrl()));
+        this.userRepository.save(userEntity);
     }
 
     @Override
