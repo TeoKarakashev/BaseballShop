@@ -22,7 +22,7 @@
                     </div>
                     <div class="row mt-4 tm-edit-product-row">
                         <div class="col-xl-7 col-lg-7 col-md-12">
-                            <form  class="tm-edit-product-form">
+                            <form class="tm-edit-product-form">
                                 <div class="input-group mb-3">
                                     <label for="address" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Address
                                     </label>
@@ -31,11 +31,11 @@
                                            data-large-mode="true" th:value="*{address}">
                                 </div>
                                 <div class="input-group mb-3">
-                                        <label for="noCapacity" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Capacity
-                                        </label>
-                                        <input disabled id="noCapacity" name="noCapacity" type="text"
-                                               class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                               data-large-mode="true" th:value="|*{players.size()}/*{capacity}|">
+                                    <label for="noCapacity" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Capacity
+                                    </label>
+                                    <input disabled id="noCapacity" name="noCapacity" type="text"
+                                           class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                           data-large-mode="true" th:value="|*{players.size()}/*{capacity}|">
                                 </div>
                                 <div class="input-group mb-3">
                                     <label for="players" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Players
@@ -57,7 +57,8 @@
                                     </label>
                                     <input disabled id="created" name="created" type="text"
                                            class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
-                                           data-large-mode="true" th:value="|*{created}: *{creator.firstName} *{creator.lastName}|">
+                                           data-large-mode="true"
+                                           th:value="|*{created}: *{creator.firstName} *{creator.lastName}|">
                                 </div>
                                 <div class="input-group mb-3">
                                     <label for="description" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Description
@@ -68,17 +69,18 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="row col-md-3">
+                        <div class="col">
                             <div class="button-holder ">
+
                                 <form th:if="${canJoin}" th:action="@{/teams/join/{id}(id = *{id})}" th:method="post">
-                                    <input  type="submit" class="btn btn-info btn-lg" value="Join"/>
+                                    <input type="submit" class="btn btn-info btn-lg joinBtn" value="Join"/>
                                 </form>
                                 <form th:if="${canLeave}" th:action="@{/teams/leave/{id}(id = *{id})}" th:method="post">
-                                    <input  type="submit" class="btn btn-info btn-lg" value="Leave"/>
-
+                                    <input type="submit" class="btn btn-info btn-lg leaveAndDelBtn" value="Leave"/>
                                 </form>
+
                                 <form th:if="${isCreator}" th:action="@{/teams/delete/{id}(id = *{id})}" th:method="post">
-                                    <input  type="submit" class="btn btn-info btn-lg" value="Delete"/>
+                                    <input type="submit" class="btn btn-info btn-lg leaveAndDelBtn" value="Delete"/>
                                 </form>
 
                             </div>

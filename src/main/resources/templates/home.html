@@ -7,7 +7,29 @@
 
 <main>
     <th:block th:include="~{fragments/navigation}"></th:block>
-    <div class="text-white text-center p-1">This is the home page</div>
+    <div class="container">
+        <div class="row">
+            <div style="margin: 30px" class="container bg-blur mt-5 text-white text-center col ">
+                <div style="font-size: 40px; margin-top: 150px" class="text-white">Join a team</div>
+                <form action="/teams">
+                    <button style="margin-bottom: 150px" class="nav-link text-white active  viewMoreBtn" type="submit">
+                        View
+                        more
+                    </button>
+                </form>
+            </div>
+
+            <div style="margin: 30px" class="container bg-blur mt-5 text-white text-center col">
+                <div style="font-size: 40px; margin-top: 150px" class="text-white p-1">Buy equipment</div>
+                <form action="/equipment">
+                    <button style="margin-bottom: 150px" class="nav-link text-white active viewMoreBtn" type="submit">
+                        View
+                        more
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>
 
 <div th:include="fragments/footer"></div>

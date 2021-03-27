@@ -20,6 +20,7 @@ body {
     float: right;
 
 }
+
 btnLogout:focus {
     outline: none;
 }
@@ -37,6 +38,26 @@ btnLogout:focus {
     background-color: #005cbf;
 }
 
+.viewMoreBtn {
+    background-color:transparent;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:19px;
+    font-style:italic;
+    padding:12px 37px;
+    text-decoration:none;
+    border: white 1px solid;
+}
+.viewMoreBtn:hover {
+    background-color:transparent;
+}
+.viewMoreBtn:active {
+    position:relative;
+    top:1px;
+}
+
+
 
 .bottom {
     position: fixed;
@@ -47,6 +68,15 @@ btnLogout:focus {
     align-items: center;
 }
 
+
+.joinBtn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.leaveAndDelBtn{
+    margin-bottom: 30px;
+}
 
 
 

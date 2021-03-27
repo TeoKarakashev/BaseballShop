@@ -4,6 +4,7 @@ import com.softuni.model.binding.TeamCreateBindingModel;
 import com.softuni.model.service.TeamServiceModel;
 import com.softuni.service.TeamService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,8 @@ public class TeamController {
     private final TeamService teamService;
     private final ModelMapper modelMapper;
 
+
+    @Autowired
     public TeamController(TeamService teamService, ModelMapper modelMapper) {
         this.teamService = teamService;
         this.modelMapper = modelMapper;
@@ -89,13 +92,12 @@ public class TeamController {
     @PreAuthorize("isAuthenticated()")
     public String join(@PathVariable String id, Principal principal){
         this.teamService.addPlayerToTeam(id, principal.getName());
-
         return "redirect:/";
     }
 
     @PostMapping("/delete/{id}")
     @PreAuthorize("isAuthenticated()")
-    private String delete(@PathVariable String id){
+    public String delete(@PathVariable String id){
         this.teamService.delete(id);
         return "redirect:/";
     }
@@ -107,4 +109,5 @@ public class TeamController {
 
         return "redirect:/";
     }
+
 }
