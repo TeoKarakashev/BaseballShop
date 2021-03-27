@@ -125,6 +125,8 @@ public class UserServiceImpl implements UserService {
         this.userRepository.save(userEntity);
     }
 
+
+
     @Override
     public void promoteUserToAdmin(String username) {
         RoleEntity adminRole = this.roleService.getRoleByName(UserRole.ADMIN);

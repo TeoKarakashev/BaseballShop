@@ -26,4 +26,6 @@ public interface UserService {
     boolean emailExists(String email);
 
     void changePicture(UpdatePictureServiceModel picture, String name) throws IOException;
+
+
 }
