@@ -24,9 +24,7 @@ public class EquipmentController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView all(ModelAndView modelAndView){
 
-        //TODO schedule, AOP, RestController?
-        //TODO Think of something on the home page, add picture from profile
-
+        //TODO RestController?, Tests
 
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
         modelAndView.addObject("bats", this.batService.findAllBats());

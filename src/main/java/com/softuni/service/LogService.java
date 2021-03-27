@@ -9,4 +9,5 @@ public interface LogService {
 
     List<LogServiceModel> findAll();
 
+    void clearLog();
 }

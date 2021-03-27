@@ -48,4 +48,9 @@ public class LogServiceImpl implements LogService {
                 .map(logEntity -> this.modelMapper.map(logEntity, LogServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void clearLog() {
+        this.logRepository.deleteAll();
+    }
 }
