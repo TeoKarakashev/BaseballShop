@@ -1,26 +1,26 @@
-package com.softuni.model.entity;
+package com.softuni.model.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.softuni.model.entity.UserEntity;
+
 import java.time.LocalDateTime;
 
+public class LogServiceModel {
 
-@Entity
-@Table(name = "logs")
-public class LogEntity extends BaseEntity{
-
-    @ManyToOne
+    private String id;
     private UserEntity userEntity;
-    @Column(nullable = false)
     private String action;
-    @Column(nullable = false)
-    private String  teamName;
-    @Column(name = "date_time", nullable = false)
+    private String name;
     private LocalDateTime dateTime;
 
-    public LogEntity() {
+    public LogServiceModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public UserEntity getUserEntity() {
@@ -39,12 +39,12 @@ public class LogEntity extends BaseEntity{
         this.action = action;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getName() {
+        return name;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDateTime getDateTime() {
@@ -55,4 +55,3 @@ public class LogEntity extends BaseEntity{
         this.dateTime = dateTime;
     }
 }
-

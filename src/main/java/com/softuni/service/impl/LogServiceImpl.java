@@ -1,8 +1,8 @@
 package com.softuni.service.impl;
 
 import com.softuni.model.entity.LogEntity;
-import com.softuni.model.entity.TeamEntity;
 import com.softuni.model.entity.UserEntity;
+import com.softuni.model.service.LogServiceModel;
 import com.softuni.repository.LogRepository;
 import com.softuni.service.LogService;
 import com.softuni.service.TeamService;
@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LogServiceImpl implements LogService {
@@ -35,9 +37,15 @@ public class LogServiceImpl implements LogService {
         LogEntity logEntity = new LogEntity();
         logEntity.setAction(action);
         logEntity.setDateTime(LocalDateTime.now());
-        logEntity.setTeamEntity(this.modelMapper.map(this.teamService.findById(id), TeamEntity.class));
+        logEntity.setTeamName(this.teamService.findById(id).getName());
         logEntity.setUserEntity(this.modelMapper.map(this.userService.findByUsername(authentication.getName()), UserEntity.class));
-        System.out.println();
         this.logRepository.save(logEntity);
+    }
+
+    @Override
+    public List<LogServiceModel> findAll() {
+        return this.logRepository.findAll().stream()
+                .map(logEntity -> this.modelMapper.map(logEntity, LogServiceModel.class))
+                .collect(Collectors.toList());
     }
 }
