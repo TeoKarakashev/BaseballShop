@@ -5,9 +5,9 @@ import com.softuni.service.LogService;
 import com.softuni.util.annotation.PageTitle;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/stats")
@@ -20,11 +20,13 @@ public class StatsController {
     }
 
 
-    @PageTitle(name = "stats")
+    @PageTitle(name = "statistics")
     @GetMapping("")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
-    public String stats(Model model){
-            model.addAttribute("logs", this.logService.findAll());
-        return "stats/stats";
+    public ModelAndView stats(ModelAndView modelAndView){
+            modelAndView.addObject("logs", this.logService.findAll());
+            modelAndView.setViewName("stats/stats");
+            modelAndView.addObject("title", "This veryu coll");
+        return modelAndView;
     }
 }

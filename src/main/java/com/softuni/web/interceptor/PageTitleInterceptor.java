@@ -14,7 +14,7 @@ public class PageTitleInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        String title = "Baseball Shop";
+        String title = "baseball-shop";
         String addToTitleStr = "";
         if (handler instanceof HandlerMethod) {
             PageTitle addToTitle = ((HandlerMethod) handler).getMethodAnnotation(PageTitle.class);
