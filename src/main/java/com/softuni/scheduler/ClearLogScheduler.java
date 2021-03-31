@@ -13,6 +13,7 @@ public class ClearLogScheduler {
         this.logService = logService;
     }
 
+
     @Scheduled(cron = "0 0 0 * * 0")
     private void clearLog(){
         this.logService.clearLog();

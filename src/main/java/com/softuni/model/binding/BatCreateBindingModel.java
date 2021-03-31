@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 
 public class BatCreateBindingModel {
 
-    @Size(min = 1, message = "Name is required")
-    private String name;
     @NotNull(message = "Image must be chosen")
     private MultipartFile imageUrl;
+    @Size(min = 1, message = "Name is required")
+    private String name;
     @NotNull(message = "Material must be chosen")
     private BatMaterial material;
     @Size(min = 5, message = "Description must be at least 5 characters long")

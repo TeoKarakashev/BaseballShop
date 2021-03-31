@@ -24,8 +24,6 @@ public class EquipmentController {
     @PreAuthorize("isAuthenticated()")
     public ModelAndView all(ModelAndView modelAndView){
 
-        //TODO RestController?, Tests
-
         modelAndView.addObject("gloves", this.gloveService.findAllGloves());
         modelAndView.addObject("bats", this.batService.findAllBats());
         modelAndView.setViewName("/equipment/equipment");
