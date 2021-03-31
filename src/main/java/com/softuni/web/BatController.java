@@ -6,6 +6,7 @@ import com.softuni.model.service.BrandServiceModel;
 import com.softuni.model.view.BatViewModel;
 import com.softuni.service.BatService;
 import com.softuni.service.BrandService;
+import com.softuni.util.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,7 @@ public class BatController {
     }
 
 
+    @PageTitle(name = "details")
     @GetMapping("/details/{id}")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView details(@PathVariable String id, ModelAndView modelAndView) {
@@ -59,6 +61,7 @@ public class BatController {
         return modelAndView;
     }
 
+    @PageTitle(name = "viewALl")
     @GetMapping("/viewAll")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView viewAll(ModelAndView modelAndView) {
@@ -68,6 +71,7 @@ public class BatController {
         return modelAndView;
     }
 
+    @PageTitle(name = "viewRawlings")
     @GetMapping("/showRawlings")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView showRawlings(ModelAndView modelAndView) {
@@ -79,6 +83,7 @@ public class BatController {
         return modelAndView;
     }
 
+    @PageTitle(name = "viewWilson")
     @GetMapping("/showWilson")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView showWilson(ModelAndView modelAndView) {
@@ -89,6 +94,7 @@ public class BatController {
         return modelAndView;
     }
 
+    @PageTitle(name = "viewE7")
     @GetMapping("/showE7")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView showE7(ModelAndView modelAndView) {
@@ -107,6 +113,7 @@ public class BatController {
         return "redirect:/";
     }
 
+    @PageTitle(name = "add")
     @GetMapping("/add")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String create() {

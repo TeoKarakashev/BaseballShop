@@ -2,7 +2,7 @@ package com.softuni.web;
 
 import com.softuni.model.view.BatViewModel;
 import com.softuni.service.BatService;
-import com.softuni.web.annotation.PageTitle;
+import com.softuni.util.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class BatRestController {
     }
 
 
-    @PageTitle("Bats")
+    @PageTitle(name = "bats")
     @GetMapping("/api")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<BatViewModel>> findAll() {

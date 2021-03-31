@@ -1,4 +1,5 @@
-package com.softuni.web.annotation;
+package com.softuni.util.annotation;
+
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,5 +10,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface PageTitle {
 
-    String value() default "";
+    String name() default "";
 }

@@ -1,7 +1,7 @@
 package com.softuni.web;
 
 import com.softuni.service.UserService;
-import com.softuni.web.annotation.PageTitle;
+import com.softuni.util.annotation.PageTitle;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,8 @@ public class RoleController {
         this.userService = userService;
     }
 
+    @PageTitle(name = "add")
     @GetMapping("/add")
-    @PageTitle("Roles Manager")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ModelAndView add(ModelAndView modelAndView) {
 

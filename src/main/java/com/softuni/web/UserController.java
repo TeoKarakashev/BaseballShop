@@ -6,6 +6,7 @@ import com.softuni.model.service.UpdatePictureServiceModel;
 import com.softuni.model.service.UserRegisterServiceModel;
 import com.softuni.model.view.UserViewModel;
 import com.softuni.service.UserService;
+import com.softuni.util.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -57,6 +58,7 @@ public class UserController {
 
 
 
+    @PageTitle(name = "register")
     @GetMapping("/register")
     public String register(){
         return "/users/register";
@@ -98,6 +100,7 @@ public class UserController {
     }
 
 
+    @PageTitle(name = "profile")
     @GetMapping("/profile")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView profile(ModelAndView modelAndView, Principal principal){
@@ -110,6 +113,7 @@ public class UserController {
     }
 
 
+    @PageTitle(name = "login")
     @GetMapping("/login")
     public String login(){
         return "/users/login";

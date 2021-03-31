@@ -3,7 +3,7 @@ package com.softuni.web;
 
 import com.softuni.model.view.GloveViewModel;
 import com.softuni.service.GloveService;
-import com.softuni.web.annotation.PageTitle;
+import com.softuni.util.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +26,7 @@ public class GloveRestController {
         this.modelMapper = modelMapper;
     }
 
-
-    @PageTitle("Gloves")
+    @PageTitle(name = "gloves")
     @GetMapping("/api")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<GloveViewModel>> findAll() {

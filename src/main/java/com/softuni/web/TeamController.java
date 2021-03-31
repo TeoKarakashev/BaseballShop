@@ -3,6 +3,7 @@ package com.softuni.web;
 import com.softuni.model.binding.TeamCreateBindingModel;
 import com.softuni.model.service.TeamServiceModel;
 import com.softuni.service.TeamService;
+import com.softuni.util.annotation.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,6 +38,7 @@ public class TeamController {
     public Boolean teamExists() {return false;}
 
 
+    @PageTitle(name = "create")
     @GetMapping("/create")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String create(){
@@ -65,6 +67,7 @@ public class TeamController {
         return "redirect:/";
     }
 
+    @PageTitle(name = "teams")
     @GetMapping("")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView teams(ModelAndView modelAndView){
@@ -73,6 +76,7 @@ public class TeamController {
         return modelAndView;
     }
 
+    @PageTitle(name = "details")
     @GetMapping("/details/{id}")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView details(ModelAndView modelAndView, @PathVariable String id, Principal principal){

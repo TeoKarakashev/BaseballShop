@@ -1,7 +1,7 @@
 package com.softuni.web;
 
 
-import com.softuni.web.annotation.PageTitle;
+import com.softuni.util.annotation.PageTitle;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,8 +12,8 @@ import java.security.Principal;
 public class HomeController {
 
 
+    @PageTitle(name = "home")
     @GetMapping("/")
-    @PageTitle("Home")
     public ModelAndView home(Principal principal, ModelAndView modelAndView){
         if(principal == null){
             modelAndView.setViewName("index");

@@ -2,6 +2,7 @@ package com.softuni.web;
 
 
 import com.softuni.service.LogService;
+import com.softuni.util.annotation.PageTitle;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ public class StatsController {
     }
 
 
+    @PageTitle(name = "stats")
     @GetMapping("")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String stats(Model model){

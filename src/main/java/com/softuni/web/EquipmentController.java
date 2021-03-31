@@ -2,6 +2,7 @@ package com.softuni.web;
 
 import com.softuni.service.BatService;
 import com.softuni.service.GloveService;
+import com.softuni.util.annotation.PageTitle;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class EquipmentController {
         this.batService = batService;
     }
 
+    @PageTitle(name = "equipment")
     @GetMapping("")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView all(ModelAndView modelAndView){
