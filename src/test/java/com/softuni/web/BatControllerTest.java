@@ -179,8 +179,6 @@ public class BatControllerTest {
         E7 = brandRepository.save(E7);
 
 
-
-
         BatEntity batEntity = new BatEntity();
         batEntity.setName("272");
         batEntity.setQuantity(10);

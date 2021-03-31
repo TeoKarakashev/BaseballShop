@@ -25,9 +25,9 @@ public class DbInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        this.roleService.initRoles();
-//        this.brandService.initBrands();
-//         this.gloveService.initGloves();
-//        this.userService.initAdminUser();
+//  this.roleService.initRoles();
+//         this.brandService.initBrands();
+//       this.gloveService.initGloves();
+//       this.userService.initAdminUser();
     }
 }

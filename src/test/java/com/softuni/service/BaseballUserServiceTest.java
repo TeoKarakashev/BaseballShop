@@ -22,18 +22,20 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 @ExtendWith(MockitoExtension.class)
 public class BaseballUserServiceTest {
 
     private BaseballUserService serviceToTest;
 
+    @BeforeEach
+    public void setUp() {
+        serviceToTest = new BaseballUserService(mockUserRepository);
+    }
+
     @Mock
     UserRepository mockUserRepository;
 
-    @BeforeEach
-    public void setUp(){
-        serviceToTest = new BaseballUserService(mockUserRepository);
-    }
 
     @Test
     public void testUserNotFound(){
