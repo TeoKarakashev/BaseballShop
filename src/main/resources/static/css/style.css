@@ -18,11 +18,16 @@ body {
     background: none;
     border: none;
     float: right;
+    position: absolute;
+    right: 30px;
 
 }
 
+
 btnLogout:focus {
     outline: none;
+    border: none;
+
 }
 
 
