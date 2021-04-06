@@ -50,7 +50,6 @@ public class TeamController {
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String createConfirm(@Valid @ModelAttribute("teamCreateBindingModel")TeamCreateBindingModel teamCreateBindingModel,
                                 BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) throws IOException {
-        System.out.println();
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("teamCreateBindingModel", teamCreateBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.teamCreateBindingModel", bindingResult);

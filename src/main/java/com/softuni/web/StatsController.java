@@ -26,7 +26,6 @@ public class StatsController {
     public ModelAndView stats(ModelAndView modelAndView){
             modelAndView.addObject("logs", this.logService.findAll());
             modelAndView.setViewName("stats/stats");
-            modelAndView.addObject("title", "This veryu coll");
         return modelAndView;
     }
 }

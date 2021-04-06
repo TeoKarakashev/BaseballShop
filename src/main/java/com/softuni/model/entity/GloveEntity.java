@@ -11,7 +11,7 @@ public class GloveEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
-    @Column(name = "image_url", nullable = false, columnDefinition = "BLOB")
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
     @Enumerated(EnumType.STRING)
     private GloveMaterial material;

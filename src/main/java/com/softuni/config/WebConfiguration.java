@@ -19,7 +19,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(this.pageTitleInterceptor);
         registry.addInterceptor(this.faviconInterceptor);
+        registry.addInterceptor(this.pageTitleInterceptor);
     }
 }

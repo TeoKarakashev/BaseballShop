@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
         this.baseballUserService = baseballUserService;
         this.cloudinaryService = cloudinaryService;
+
     }
 
     @Override
@@ -124,6 +125,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setImageUrl(this.cloudinaryService.uploadImage(picture.getImageUrl()));
         this.userRepository.save(userEntity);
     }
+
 
 
 

@@ -19,7 +19,7 @@ public class BatEntity extends BaseEntity {
     private int size;
     @Column(nullable = false)
     private int quantity;
-    @Column(nullable = false, name = "image_url")
+    @Column(name = "image_url")
     private String imageUrl;
     @Column
     private BigDecimal price;

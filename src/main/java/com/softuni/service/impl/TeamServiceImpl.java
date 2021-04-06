@@ -104,6 +104,7 @@ public class TeamServiceImpl implements TeamService {
     public void delete(String id) {
         TeamServiceModel team = this.modelMapper.map(this.teamRepository.findById(id).
                 orElseThrow(() -> new TeamNotFoundException("not team found")), TeamServiceModel.class);
+        team.setCreator(null);
         for (UserEntity player : team.getPlayers()) {
             player.setTeam(null);
             this.userService.save(this.modelMapper.map(player, UserServiceModel.class));
